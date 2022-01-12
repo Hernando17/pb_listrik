@@ -14,6 +14,7 @@
         <div class="card" style="
     margin-top:30%;
     border-radius:10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     
     ">
             <div class="card-body m-4">
@@ -23,7 +24,7 @@
                     <label for="Password">Password</label>
                     <input type="password" class="form-control mb-3" name="password">
 
-                    <button type="submit" class="btn btn-primary" name="login">Login</button>
+                    <button type="submit" class="btn btn-primary float-end" name="login">Login</button>
                 </form>
             </div>
         </div>

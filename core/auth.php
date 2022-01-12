@@ -21,7 +21,7 @@ class Auth extends Connection
                 $_SESSION['username'] = $username;
                 $_SESSION['id_level'] = "1";
                 // alihkan ke halaman dashboard admin
-                header("location:view/admin/halaman_admin.php");
+                header("location:../view/admin/index.php");
 
                 // cek jika user login sebagai kasir
             } else if ($data['id_level'] == "2") {
