@@ -53,6 +53,25 @@ if ($_SESSION['id_level'] != "1") {
                 </ul>
             </div>
     </nav>
+    <div class="container" style="
+    padding:80px;
+    width:60%;
+    ">
+        <div class="card" style="
+        padding:50px; 
+        border-radius:10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        ">
+            <div class="card-body">
+                <?php
+                if ($_SESSION['id_level'] == "1") {
+                    echo "<h4>Selamat datang di situs pembayaran listrik</h4> <br>";
+                    echo "<h5>Anda berhasil login sebagai admin</h5>";
+                }
+                ?>
+            </div>
+        </div>
+    </div>
 </body>
 
 <footer>
