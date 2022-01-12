@@ -1,11 +1,8 @@
 <?php
-
 session_start();
-
 if ($_SESSION['id_level'] != "1") {
     header("location:../login.php");
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +12,7 @@ if ($_SESSION['id_level'] != "1") {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beranda | Pembayaran Listrik</title>
+    <title>Data Admin | Pembayaran Listrik</title>
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 </head>
 
@@ -29,13 +26,13 @@ if ($_SESSION['id_level'] != "1") {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Beranda</a>
+                        <a class="nav-link" aria-current="page" href="index.php">Beranda</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Penggunaan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin.php">Admin</a>
+                        <a class="nav-link active" href="#">Admin</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pelanggan</a>
@@ -62,29 +59,8 @@ if ($_SESSION['id_level'] != "1") {
                 </ul>
             </div>
     </nav>
-    <div class="container" style="
-    padding:80px;
-    width:60%;
-    ">
-        <div class="card" style="
-        padding:50px; 
-        border-radius:10px;
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        ">
-            <div class="card-body">
-                <?php
-                if ($_SESSION['id_level'] == "1") {
-                    echo "<h4>Selamat datang di situs pembayaran listrik</h4> <br>";
-                    echo "<h5>Anda berhasil login sebagai admin</h5>";
-                }
-                ?>
-            </div>
-        </div>
-    </div>
-</body>
 
-<footer>
-    <script src="../../assets/js/bootstrap.bundle.min.js"></script>
-</footer>
+
+</body>
 
 </html>
