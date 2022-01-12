@@ -1,8 +1,8 @@
 <?php
 
 require '../connection.php';
-require 'main.php';
 require_once 'auth.php';
+require 'main.php';
 
 if (isset($_POST['login'])) {
     $username = $_POST['username'];

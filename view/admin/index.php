@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+
+if ($_SESSION['id_level'] != "1") {
+    header("location:../login.php");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,27 +37,26 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pelanggan</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="../logout.php" class="nav-link" name="logout">Logout</a>
-                    </li>
                 </ul>
             </div>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <div class="dropdown show">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Nama
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a href="#" class="nav-link dropdown-item" name="logout">Logout</a>
-                            </div>
-                        </div>
-                    </li>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <?php echo $_SESSION['username']; ?>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
+                        </ul>
+                    </div>
                 </ul>
             </div>
-        </div>
     </nav>
 </body>
+
+<footer>
+    <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+</footer>
 
 </html>
