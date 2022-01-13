@@ -2,15 +2,6 @@
 
 session_start();
 
-if ($_SESSION['id_level'] != "1") {
-    header("location:../login.php");
-}
-
-require "../../connection.php";
-require "../../core/main.php";
-$model = new Main();
-
-$index = 1;
 ?>
 
 <!DOCTYPE html>
@@ -20,8 +11,8 @@ $index = 1;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Admin | Pembayaran Listrik</title>
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <title>Tambah Admin | Pembayaran Listrik</title>
+    <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -34,13 +25,13 @@ $index = 1;
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.php">Beranda</a>
+                        <a class="nav-link" aria-current="page" href="../index.php">Beranda</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Penggunaan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="admin.php">Admin</a>
+                        <a class="nav-link active" href="index.php">Admin</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pelanggan</a>
@@ -61,51 +52,48 @@ $index = 1;
                         </a>
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
+                            <li><a class="dropdown-item" href="../../logout.php">Logout</a></li>
                         </ul>
                     </div>
                 </ul>
             </div>
     </nav>
-    <div class="container" style="margin-top:3%;">
-        <a href=" #" class="btn btn-success" style="margin:12px;">+</a>
-        <div class="container">
-            <div class=" card" style="
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        border-radius:10px;
-        ">
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Username</th>
-                                <th>Nama</th>
-                                <th>ID Level</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $result = $model->admin();
-                            if (!empty($result)) {
-                                foreach ($result as $r) : ?>
-                                    <td><?= $index++ ?></td>
-                                    <td><?= $r->username; ?></td>
-                                    <td><?= $r->nama_admin; ?></td>
-                                    <td><?= $r->id_level; ?></td>
 
-                                <?php endforeach;
-                            } else { ?>
-                                <td>Data Kosong</td>
-                            <?php } ?>
-                        </tbody>
+    <div class="container mt-5" style="
+    width:50%;
+    ">
+        <div class="card" style="
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            border-radius:10px;
+            ">
+            <div class="card-body m-4">
+                <form action="../../../core/model.php" method="post">
+                    <label for="nama_admin">Nama Admin</label>
+                    <input type="text" class="form-control mb-2 " name="nama_admin" />
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control mb-2" name="username" />
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control mb-2" name="password" />
+                    <div class="mb-3 col-2">
+                        <label for="disabledSelect">ID Level</label>
+                        <select id="disabledSelect" class="form-select mb-4" name="id_level">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
 
-                    </table>
-                </div>
+                    <a href="index.php" class="btn btn-primary">Kembali</a>
+                    <button type="submit" name="create_admin" class="btn btn-success">Konfirmasi</button>
+                </form>
+
             </div>
         </div>
     </div>
-
 </body>
+
+<footer>
+    <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
+</footer>
 
 </html>

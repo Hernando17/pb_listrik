@@ -13,6 +13,11 @@ if (isset($_POST['login'])) {
 }
 
 // Create new admin
-if (isset($_POST['insert_admin'])) {
-    // 
+if (isset($_POST['create_admin'])) {
+    $nama_admin = $_POST['nama_admin'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $id_level = $_POST['id_level'];
+    $model = new Main();
+    $model->create_admin($username, $password, $nama_admin, $id_level);
 }

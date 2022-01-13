@@ -3,9 +3,14 @@
 session_start();
 
 if ($_SESSION['id_level'] != "1") {
-    header("location:../login.php");
+    header("location:../../login.php");
 }
 
+require "../../../connection.php";
+require "../../../core/main.php";
+$model = new Main();
+
+$index = 1;
 ?>
 
 <!DOCTYPE html>
@@ -15,8 +20,8 @@ if ($_SESSION['id_level'] != "1") {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beranda | Pembayaran Listrik</title>
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <title>Data Admin | Pembayaran Listrik</title>
+    <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -29,13 +34,13 @@ if ($_SESSION['id_level'] != "1") {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Beranda</a>
+                        <a class="nav-link" aria-current="page" href="../index.php">Beranda</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Penggunaan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin/index.php">Admin</a>
+                        <a class="nav-link active" href="admin.php">Admin</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pelanggan</a>
@@ -56,35 +61,57 @@ if ($_SESSION['id_level'] != "1") {
                         </a>
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
+                            <li><a class="dropdown-item" href="../../logout.php">Logout</a></li>
                         </ul>
                     </div>
                 </ul>
             </div>
     </nav>
-    <div class="container" style="
-    padding:80px;
-    width:60%;
-    ">
-        <div class="card" style="
-        padding:50px; 
-        border-radius:10px;
+    <div class="container" style="margin-top:3%;">
+        <a href=" create.php" class="btn btn-success" style="margin:12px;">+</a>
+        <div class="container">
+            <div class=" card" style="
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius:10px;
         ">
-            <div class="card-body">
-                <?php
-                if ($_SESSION['id_level'] == "1") {
-                    echo "<h4>Selamat datang di situs pembayaran listrik</h4> <br>";
-                    echo "<h5>Anda berhasil login sebagai admin</h5>";
-                }
-                ?>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Username</th>
+                                <th>Nama</th>
+                                <th>ID Level</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <?php
+                            $result = $model->admin();
+                            if (!empty($result)) {
+                                foreach ($result as $r) : ?>
+                                    <tr>
+                                        <th><?= $index++ ?></th>
+                                        <td><?= $r->username; ?></td>
+                                        <td><?= $r->nama_admin; ?></td>
+                                        <td><?= $r->id_level; ?></td>
+                                    </tr>
+                                <?php endforeach;
+                            } else { ?>
+                                <td>Data tidak ditemukan</td>
+                            <?php } ?>
+                        </tbody>
+
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+
 </body>
 
 <footer>
-    <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
 </footer>
 
 </html>

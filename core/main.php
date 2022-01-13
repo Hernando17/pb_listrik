@@ -19,4 +19,11 @@ class Main extends Connection
             return $baris;
         }
     }
+
+    public function create_admin($username, $password, $nama_admin, $id_level)
+    {
+        $sql = "INSERT INTO admin (username, password, nama_admin, id_level) VALUES ('$username', '$password', '$nama_admin', '$id_level')";
+        $bind = $this->conn->query($sql);
+        header("location:../view/admin/admin/index.php");
+    }
 }
