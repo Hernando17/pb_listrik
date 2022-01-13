@@ -1,8 +1,16 @@
 <?php
+
 session_start();
+
 if ($_SESSION['id_level'] != "1") {
     header("location:../login.php");
 }
+
+require "../../connection.php";
+require "../../core/main.php";
+$model = new Main();
+
+$index = 1;
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +40,7 @@ if ($_SESSION['id_level'] != "1") {
                         <a class="nav-link" href="#">Penggunaan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Admin</a>
+                        <a class="nav-link active" href="admin.php">Admin</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pelanggan</a>
@@ -59,7 +67,44 @@ if ($_SESSION['id_level'] != "1") {
                 </ul>
             </div>
     </nav>
+    <div class="container" style="margin-top:3%;">
+        <a href=" #" class="btn btn-success" style="margin:12px;">+</a>
+        <div class="container">
+            <div class=" card" style="
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius:10px;
+        ">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Username</th>
+                                <th>Nama</th>
+                                <th>ID Level</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $result = $model->admin();
+                            if (!empty($result)) {
+                                foreach ($result as $r) : ?>
+                                    <td><?= $index++ ?></td>
+                                    <td><?= $r->username; ?></td>
+                                    <td><?= $r->nama_admin; ?></td>
+                                    <td><?= $r->id_level; ?></td>
 
+                                <?php endforeach;
+                            } else { ?>
+                                <td>Data Kosong</td>
+                            <?php } ?>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
