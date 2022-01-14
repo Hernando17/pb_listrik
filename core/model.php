@@ -18,6 +18,9 @@ if (isset($_POST['create_admin'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $id_level = $_POST['id_level'];
+    $password = password_hash($password, PASSWORD_DEFAULT);
     $model = new Main();
     $model->create_admin($username, $password, $nama_admin, $id_level);
 }
+
+// Edit admin

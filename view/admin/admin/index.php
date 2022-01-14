@@ -82,6 +82,7 @@ $index = 1;
                                 <th>Username</th>
                                 <th>Nama</th>
                                 <th>ID Level</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -95,6 +96,12 @@ $index = 1;
                                         <td><?= $r->username; ?></td>
                                         <td><?= $r->nama_admin; ?></td>
                                         <td><?= $r->id_level; ?></td>
+                                        <td>
+                                            <a href="edit.php?id=<?= $r->id_admin; ?>" class="btn btn-primary">Ubah</a>
+                                            <form action="#" method="post" class="d-inline">
+                                                <button type="submit" name="delete_admin" class="btn btn-danger">Hapus</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 <?php endforeach;
                             } else { ?>
