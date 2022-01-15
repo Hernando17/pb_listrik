@@ -34,11 +34,12 @@ class Main extends Connection
         while ($obj = $bind->fetch_object()) {
             $baris = $obj;
         }
+        return $baris;
     }
 
     public function update_admin($id, $username, $nama_admin, $id_level)
     {
-        $sql = "UPDATE admin SET username='$username', nama_admin='$nama_admin', id_level='$id_level' WHERE id='$id'";
+        $sql = "UPDATE admin SET username='$username', nama_admin='$nama_admin', id_level='$id_level' WHERE id_admin='$id'";
         $bind = $this->conn->query($sql);
     }
 

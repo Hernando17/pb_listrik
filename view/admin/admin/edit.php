@@ -75,14 +75,13 @@ $data = $model->edit_admin($id);
             <div class="card-body m-4">
                 <form action="../../../core/model.php?id=<?= $id ?>" method="post">
                     <label for="nama_admin">Nama Admin</label>
-                    <input type="text" class="form-control mb-2 " name="nama_admin" />
+                    <input type="text" class="form-control mb-2 " name="nama_admin" value="<?= $data->nama_admin ?>" />
                     <label for="username">Username</label>
-                    <input type="text" class="form-control mb-2" name="username" />
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control mb-2" name="password" />
+                    <input type="text" class="form-control mb-2" name="username" value="<?= $data->username; ?>" />
                     <div class="mb-3 col-2">
                         <label for="disabledSelect">ID Level</label>
                         <select id="disabledSelect" class="form-select mb-4" name="id_level">
+                            <option><?= $data->id_level; ?></option>
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -90,7 +89,7 @@ $data = $model->edit_admin($id);
                     </div>
 
                     <a href="index.php" class="btn btn-primary">Kembali</a>
-                    <button type="submit" name="create_admin" class="btn btn-success">Konfirmasi</button>
+                    <button type="submit" name="update_admin" class="btn btn-success">Konfirmasi</button>
                 </form>
             </div>
         </div>

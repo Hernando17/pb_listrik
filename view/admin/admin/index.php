@@ -98,7 +98,7 @@ $index = 1;
                                         <td>
                                             <a href="edit.php?id=<?= $r->id_admin; ?>" class="btn btn-primary">Ubah</a>
                                             <form action="../../../core/model.php?id=<?= $r->id_admin; ?>" method="post" class="d-inline">
-                                                <button type="submit" name="delete_admin" class="btn btn-danger">Hapus</button>
+                                                <button type="submit" name="delete_admin" onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>

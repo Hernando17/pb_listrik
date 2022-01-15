@@ -23,19 +23,20 @@ if (isset($_POST['create_admin'])) {
 }
 
 // Edit admin
-if (isset($_POST['edit_admin'])) {
-    $id = $_GET['id_admin'];
+if (isset($_POST['update_admin'])) {
+    $id = $_GET['id'];
     $username = $_POST['username'];
     $nama_admin = $_POST['nama_admin'];
     $id_level = $_POST['id_level'];
     $model = new Main();
     $model->update_admin($id, $username, $nama_admin, $id_level);
+    header("location:../view/admin/admin/index.php");
 }
 
 // Delete admin
 if (isset($_POST['delete_admin'])) {
     $id = $_GET['id'];
-    $model = new main();
+    $model = new Main();
     $model->delete_admin($id);
     header("location:../view/admin/admin/index.php");
 }
