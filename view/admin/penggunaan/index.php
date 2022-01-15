@@ -92,15 +92,16 @@ $index = 1;
                                 foreach ($result as $r) : ?>
                                     <tr>
                                         <th><?= $index++ ?></th>
-                                        <td><?= $r->username; ?></td>
-                                        <td><?= $r->nama_admin; ?></td>
-                                        <td><?= $r->id_level; ?></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td><?= $r->id_pelanggan; ?></td>
+                                        <td><?= $r->bulan; ?></td>
+                                        <td><?= $r->tahun; ?></td>
+                                        <td><?= $r->meter_awal; ?></td>
+                                        <td><?= $r->meter_akhir; ?></td>
+
                                         <td>
                                             <a href="edit.php?id=<?= $r->id_admin; ?>" class="btn btn-primary">Ubah</a>
-                                            <form action="../../../core/model.php?id=<?= $r->id_admin; ?>" method="post" class="d-inline">
-                                                <button type="submit" name="delete_admin" onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger">Hapus</button>
+                                            <form action="../../../core/model.php?id=<?= $r->id_penggunaan; ?>" method="post" class="d-inline">
+                                                <button type="submit" name="delete_penggunaan" onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>

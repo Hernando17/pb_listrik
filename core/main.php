@@ -62,4 +62,16 @@ class Main extends Connection
             return $baris;
         }
     }
+
+    public function create_penggunaan($id_pelanggan, $bulan, $tahun, $meter_awal, $meter_akhir)
+    {
+        $sql = "INSERT INTO penggunaan (id_pelanggan, bulan, tahun, meter_awal, meter_akhir) VALUES ('$id_pelanggan', '$bulan', '$tahun', '$meter_awal', '$meter_akhir')";
+        $bind = $this->conn->query($sql);
+    }
+
+    public function delete_penggunaan($id)
+    {
+        $sql = "DELETE FROM penggunaan WHERE id_penggunaan='$id'";
+        $bind = $this->conn->query($sql);
+    }
 }

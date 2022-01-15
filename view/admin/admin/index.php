@@ -105,6 +105,13 @@ $index = 1;
                                 <?php endforeach;
                             } else { ?>
                                 <td>Data tidak ditemukan</td>
+                                <?php
+
+                                for ($i = 0; $i <= 5; $i++) {
+                                    echo "<td></td>";
+                                }
+
+                                ?>
                             <?php } ?>
                         </tbody>
 

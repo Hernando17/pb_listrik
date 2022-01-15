@@ -40,3 +40,23 @@ if (isset($_POST['delete_admin'])) {
     $model->delete_admin($id);
     header("location:../view/admin/admin/index.php");
 }
+
+// Create penggunaan
+if (isset($_POST['create_penggunaan'])) {
+    $id_pelanggan = $_POST['id_pelanggan'];
+    $bulan = $_POST['bulan'];
+    $tahun = $_POST['tahun'];
+    $meter_awal = $_POST['meter_awal'];
+    $meter_akhir = $_POST['meter_akhir'];
+    $model = new Main();
+    $model->create_penggunaan($id_pelanggan, $bulan, $tahun, $meter_awal, $meter_akhir);
+    header("location:../view/admin/penggunaan/index.php");
+}
+
+// Delete penggunaan
+if (isset($_POST['delete_penggunaan'])) {
+    $id = $_GET['id'];
+    $model = new Main();
+    $model->delete_penggunaan($id);
+    header("location:../view/admin/penggunaan/index.php");
+}

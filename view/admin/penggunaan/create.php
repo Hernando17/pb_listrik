@@ -76,7 +76,7 @@ require_once "../../../core/init.php";
                         <div class="col">
                             <div class="mb-2 col-10">
                                 <label for="disabledSelect">ID Pelanggan</label>
-                                <select id="disabledSelect" class="form-select" name="id_level">
+                                <select id="disabledSelect" class="form-select" name="id_pelanggan">
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -84,7 +84,7 @@ require_once "../../../core/init.php";
                             </div>
                             <div class="mb-3 col-10">
                                 <label for="disabledSelect">Bulan</label>
-                                <select id="disabledSelect" class="form-select mb-2" name="id_level">
+                                <select id="disabledSelect" class="form-select mb-2" name="bulan">
                                     <option>Januari</option>
                                     <option>Februari</option>
                                     <option>Maret</option>
@@ -98,24 +98,21 @@ require_once "../../../core/init.php";
                                     <option>November</option>
                                     <option>Desember</option>
                                 </select>
-                                <label for="nama_admin">Tahun</label>
-                                <input type="text" class="form-control" name="nama_admin" />
+                                <label for="tahun">Tahun</label>
+                                <input type="text" class="form-control" name="tahun" />
                             </div>
                         </div>
 
-
                         <div class="col">
-                            <label for="nama_admin">Meter Awal</label>
-                            <input type="text" class="form-control mb-2 " name="nama_admin" />
-                            <label for="nama_admin">Meter Akhir</label>
-                            <input type="text" class="form-control mb-4 " name="nama_admin" />
+                            <label for="meter_awal">Meter Awal</label>
+                            <input type="text" class="form-control mb-2 " name="meter_awal" />
+                            <label for="meter_akhir">Meter Akhir</label>
+                            <input type="text" class="form-control mb-4 " name="meter_akhir" />
                             <a href="index.php" class="btn btn-primary">Kembali</a>
-                            <button type="submit" name="create_admin" class="btn btn-success">Konfirmasi</button>
+                            <button type="submit" name="create_penggunaan" class="btn btn-success">Konfirmasi</button>
                         </div>
                     </div>
             </div>
-
-
             </form>
 
         </div>
