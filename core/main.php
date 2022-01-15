@@ -24,6 +24,27 @@ class Main extends Connection
     {
         $sql = "INSERT INTO admin (username, password, nama_admin, id_level) VALUES ('$username', '$password', '$nama_admin', '$id_level')";
         $bind = $this->conn->query($sql);
-        header("location:../view/admin/admin/index.php");
+    }
+
+    public function edit_admin($id)
+    {
+        $sql = "SELECT * FROM admin WHERE id_admin='$id'";
+        $bind = $this->conn->query($sql);
+
+        while ($obj = $bind->fetch_object()) {
+            $baris = $obj;
+        }
+    }
+
+    public function update_admin($id, $username, $nama_admin, $id_level)
+    {
+        $sql = "UPDATE admin SET username='$username', nama_admin='$nama_admin', id_level='$id_level' WHERE id='$id'";
+        $bind = $this->conn->query($sql);
+    }
+
+    public function delete_admin($id)
+    {
+        $sql = "DELETE FROM admin WHERE id_admin='$id'";
+        $bind = $this->conn->query($sql);
     }
 }

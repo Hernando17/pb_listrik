@@ -6,8 +6,7 @@ if ($_SESSION['id_level'] != "1") {
     header("location:../../login.php");
 }
 
-require "../../../connection.php";
-require "../../../core/main.php";
+require "../../../core/init.php";
 $model = new Main();
 
 $index = 1;
@@ -98,7 +97,7 @@ $index = 1;
                                         <td><?= $r->id_level; ?></td>
                                         <td>
                                             <a href="edit.php?id=<?= $r->id_admin; ?>" class="btn btn-primary">Ubah</a>
-                                            <form action="#" method="post" class="d-inline">
+                                            <form action="../../../core/model.php?id=<?= $r->id_admin; ?>" method="post" class="d-inline">
                                                 <button type="submit" name="delete_admin" class="btn btn-danger">Hapus</button>
                                             </form>
                                         </td>

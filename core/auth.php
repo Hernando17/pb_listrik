@@ -15,7 +15,6 @@ class Auth extends Connection
         $cek = mysqli_num_rows($login);
 
         if ($cek > 0) {
-            // $data = mysqli_fetch_assoc($login);
             while ($row = mysqli_fetch_array($login)) {
                 if (password_verify($password, $row['password'])) {
                     if ($row['id_level'] == "1") {

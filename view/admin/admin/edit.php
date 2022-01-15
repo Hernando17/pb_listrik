@@ -2,9 +2,11 @@
 
 session_start();
 
-require "../../../connection.php";
-require "../../../core/main.php";
+require_once "../../../core/init.php";
+$model = new Main();
 
+$id = $_GET['id'];
+$data = $model->edit_admin($id);
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +73,7 @@ require "../../../core/main.php";
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     ">
             <div class="card-body m-4">
-                <form action="../../../core/model.php" method="post">
+                <form action="../../../core/model.php?id=<?= $id ?>" method="post">
                     <label for="nama_admin">Nama Admin</label>
                     <input type="text" class="form-control mb-2 " name="nama_admin" />
                     <label for="username">Username</label>
