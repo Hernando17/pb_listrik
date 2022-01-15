@@ -48,4 +48,18 @@ class Main extends Connection
         $sql = "DELETE FROM admin WHERE id_admin='$id'";
         $bind = $this->conn->query($sql);
     }
+
+    public function penggunaan()
+    {
+        $sql = "SELECT * FROM penggunaan";
+        $bind = $this->conn->query($sql);
+
+        while ($obj = $bind->fetch_object()) {
+            $baris[] = $obj;
+        }
+
+        if (!empty($baris)) {
+            return $baris;
+        }
+    }
 }

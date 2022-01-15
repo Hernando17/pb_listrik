@@ -2,14 +2,11 @@
 
 session_start();
 
-if ($_SESSION['id_level'] != "1") {
-    header("location:#");
-}
+require_once "../../../core/init.php";
 
-require "../../../core/init.php";
 $model = new Main();
-
 $index = 1;
+
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +16,7 @@ $index = 1;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Admin | Pembayaran Listrik</title>
+    <title>Penggunaan | Pembayaran Listrik</title>
     <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 </head>
 
@@ -36,10 +33,10 @@ $index = 1;
                         <a class="nav-link" aria-current="page" href="../index.php">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../penggunaan/index.php">Penggunaan</a>
+                        <a class="nav-link active" href="index.php">Penggunaan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.php">Admin</a>
+                        <a class="nav-link" href="../admin/index.php">Admin</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pelanggan</a>
@@ -66,6 +63,7 @@ $index = 1;
                 </ul>
             </div>
     </nav>
+
     <div class="container" style="margin-top:3%;">
         <a href=" create.php" class="btn btn-success" style="margin:12px;">+</a>
         <div class="container">
@@ -78,16 +76,18 @@ $index = 1;
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Username</th>
-                                <th>Nama</th>
-                                <th>ID Level</th>
+                                <th>ID Pelanggan</th>
+                                <th>Bulan</th>
+                                <th>Tahun</th>
+                                <th>Meter Awal</th>
+                                <th>Meter Akhir</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
 
                             <?php
-                            $result = $model->admin();
+                            $result = $model->penggunaan();
                             if (!empty($result)) {
                                 foreach ($result as $r) : ?>
                                     <tr>
@@ -95,6 +95,8 @@ $index = 1;
                                         <td><?= $r->username; ?></td>
                                         <td><?= $r->nama_admin; ?></td>
                                         <td><?= $r->id_level; ?></td>
+                                        <td></td>
+                                        <td></td>
                                         <td>
                                             <a href="edit.php?id=<?= $r->id_admin; ?>" class="btn btn-primary">Ubah</a>
                                             <form action="../../../core/model.php?id=<?= $r->id_admin; ?>" method="post" class="d-inline">
@@ -105,6 +107,14 @@ $index = 1;
                                 <?php endforeach;
                             } else { ?>
                                 <td>Data tidak ditemukan</td>
+                                <?php
+
+                                for ($i = 0; $i <= 5; $i++) {
+                                    echo "<td></td>";
+                                }
+
+                                ?>
+
                             <?php } ?>
                         </tbody>
 
@@ -113,9 +123,7 @@ $index = 1;
             </div>
         </div>
     </div>
-
 </body>
-
 <footer>
     <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
 </footer>

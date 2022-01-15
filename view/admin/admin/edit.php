@@ -2,6 +2,10 @@
 
 session_start();
 
+if ($_SESSION['id_level'] != "1") {
+    header("location:#");
+}
+
 require_once "../../../core/init.php";
 $model = new Main();
 
@@ -33,7 +37,7 @@ $data = $model->edit_admin($id);
                         <a class="nav-link" aria-current="page" href="../index.php">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Penggunaan</a>
+                        <a class="nav-link" href="../penggunaan/index.php">Penggunaan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="index.php">Admin</a>

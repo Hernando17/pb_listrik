@@ -3,7 +3,7 @@
 session_start();
 
 if ($_SESSION['id_level'] != "1") {
-    header("location:../login.php");
+    header("location:#");
 }
 
 ?>
@@ -32,7 +32,7 @@ if ($_SESSION['id_level'] != "1") {
                         <a class="nav-link active" aria-current="page" href="index.php">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Penggunaan</a>
+                        <a class="nav-link" href="penggunaan/index.php">Penggunaan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="admin/index.php">Admin</a>
