@@ -97,9 +97,8 @@ $index = 1;
                                         <td><?= $r->tahun; ?></td>
                                         <td><?= $r->meter_awal; ?></td>
                                         <td><?= $r->meter_akhir; ?></td>
-
                                         <td>
-                                            <a href="edit.php?id=<?= $r->id_admin; ?>" class="btn btn-primary">Ubah</a>
+                                            <a href="edit.php?id=<?= $r->id_penggunaan; ?>" class="btn btn-primary">Ubah</a>
                                             <form action="../../../core/model.php?id=<?= $r->id_penggunaan; ?>" method="post" class="d-inline">
                                                 <button type="submit" name="delete_penggunaan" onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger">Hapus</button>
                                             </form>

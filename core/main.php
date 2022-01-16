@@ -69,6 +69,21 @@ class Main extends Connection
         $bind = $this->conn->query($sql);
     }
 
+    public function edit_penggunaan($id)
+    {
+        $sql = mysqli_query($this->conn, "SELECT * FROM penggunaan WHERE id_penggunaan='$id'");
+
+        while ($obj = $sql->fetch_object()) {
+            $baris = $obj;
+        }
+        return $baris;
+    }
+
+    public function update_penggunaan($id, $id_pelanggan, $bulan, $tahun, $meter_awal, $meter_akhir)
+    {
+        $sql = mysqli_query($this->conn, "UPDATE penggunaan SET id_pelanggan='$id_pelanggan', bulan='$bulan', tahun='$tahun', meter_awal='$meter_awal', meter_akhir='$meter_akhir' WHERE id_penggunaan='$id'");
+    }
+
     public function delete_penggunaan($id)
     {
         $sql = "DELETE FROM penggunaan WHERE id_penggunaan='$id'";

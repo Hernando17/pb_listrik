@@ -53,6 +53,19 @@ if (isset($_POST['create_penggunaan'])) {
     header("location:../view/admin/penggunaan/index.php");
 }
 
+// Update penggunaan
+if (isset($_POST['update_penggunaan'])) {
+    $id = $_GET['id'];
+    $id_pelanggan = $_POST['id_pelanggan'];
+    $bulan = $_POST['bulan'];
+    $tahun = $_POST['tahun'];
+    $meter_awal = $_POST['meter_awal'];
+    $meter_akhir = $_POST['meter_akhir'];
+    $model = new Main();
+    $model->update_penggunaan($id, $id_pelanggan, $bulan, $tahun, $meter_awal, $meter_akhir);
+    header("location:../view/admin/penggunaan/index.php");
+}
+
 // Delete penggunaan
 if (isset($_POST['delete_penggunaan'])) {
     $id = $_GET['id'];
