@@ -2,9 +2,9 @@
 
 session_start();
 
-if ($_SESSION['id_level'] != "1") {
-    header("location:#");
-}
+// if ($_SESSION['id_level'] != "1") {
+//     header("location:#");
+// }
 
 ?>
 
