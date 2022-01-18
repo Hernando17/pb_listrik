@@ -37,9 +37,9 @@ class Main extends Connection
         return $baris;
     }
 
-    public function update_admin($id, $username, $nama_admin, $id_level)
+    public function update_admin($id, $username, $nama_admin)
     {
-        $sql = "UPDATE admin SET username='$username', nama_admin='$nama_admin', id_level='$id_level' WHERE id_admin='$id'";
+        $sql = "UPDATE admin SET username='$username', nama_admin='$nama_admin' WHERE id_admin='$id'";
         $bind = $this->conn->query($sql);
     }
 
@@ -106,9 +106,26 @@ class Main extends Connection
         }
     }
 
-    public function create_pelanggan($username, $password, $nomor_kwh, $nama_pelanggan, $alamat, $id_tarif)
+    public function create_pelanggan($username, $password, $nomor_kwh, $nama_pelanggan, $alamat, $id_tarif, $id_level)
     {
-        $sql = "INSERT INTO pelanggan (username, password, nomor_kwh, nama_pelanggan, alamat, id_tarif) VALUES ('$username', '$password', '$nomor_kwh', '$nama_pelanggan', '$alamat', '$id_tarif')";
+        $sql = "INSERT INTO pelanggan (username, password, nomor_kwh, nama_pelanggan, alamat, id_tarif, id_level) VALUES ('$username', '$password', '$nomor_kwh', '$nama_pelanggan', '$alamat', '$id_tarif', '$id_level')";
+        $bind = $this->conn->query($sql);
+    }
+
+    public function edit_pelanggan($id)
+    {
+        $sql = "SELECT * FROM pelanggan WHERE id_pelanggan='$id'";
+        $bind = $this->conn->query($sql);
+
+        while ($obj = $bind->fetch_object()) {
+            $baris = $obj;
+        }
+        return $baris;
+    }
+
+    public function delete_pelanggan($id)
+    {
+        $sql = "DELETE FROM pelanggan WHERE id_pelanggan='$id';";
         $bind = $this->conn->query($sql);
     }
 }

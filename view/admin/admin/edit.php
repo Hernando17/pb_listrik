@@ -81,17 +81,7 @@ $data = $model->edit_admin($id);
                     <label for="nama_admin">Nama Admin</label>
                     <input type="text" class="form-control mb-2 " name="nama_admin" value="<?= $data->nama_admin ?>" />
                     <label for="username">Username</label>
-                    <input type="text" class="form-control mb-2" name="username" value="<?= $data->username; ?>" />
-                    <div class="mb-3 col-2">
-                        <label for="disabledSelect">ID Level</label>
-                        <select id="disabledSelect" class="form-select mb-4" name="id_level">
-                            <option><?= $data->id_level; ?></option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
-                    </div>
-
+                    <input type="text" class="form-control mb-3" name="username" value="<?= $data->username; ?>" />
                     <a href="index.php" class="btn btn-primary">Kembali</a>
                     <button type="submit" name="update_admin" class="btn btn-success">Konfirmasi</button>
                 </form>

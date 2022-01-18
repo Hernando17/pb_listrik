@@ -16,7 +16,7 @@ if (isset($_POST['create_admin'])) {
     $nama_admin = $_POST['nama_admin'];
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $id_level = $_POST['id_level'];
+    $id_level = "1";
     $password = password_hash($password, PASSWORD_DEFAULT);
     $model = new Main();
     $model->create_admin($username, $password, $nama_admin, $id_level);
@@ -28,9 +28,8 @@ if (isset($_POST['update_admin'])) {
     $id = $_GET['id'];
     $username = $_POST['username'];
     $nama_admin = $_POST['nama_admin'];
-    $id_level = $_POST['id_level'];
     $model = new Main();
-    $model->update_admin($id, $username, $nama_admin, $id_level);
+    $model->update_admin($id, $username, $nama_admin);
     header("location:../view/admin/admin/index.php");
 }
 
@@ -83,8 +82,17 @@ if (isset($_POST['create_pelanggan'])) {
     $nama_pelanggan = $_POST['nama_pelanggan'];
     $alamat = $_POST['alamat'];
     $id_tarif = $_POST['id_tarif'];
+    $id_level = "2";
     $password = password_hash($password, PASSWORD_DEFAULT);
     $model = new Main();
-    $model->create_pelanggan($username, $password, $nomor_kwh, $nama_pelanggan, $alamat, $id_tarif);
+    $model->create_pelanggan($username, $password, $nomor_kwh, $nama_pelanggan, $alamat, $id_tarif, $id_level);
+    header("location:../view/admin/pelanggan/index.php");
+}
+
+// Delete Pelanggan
+if (isset($_POST['delete_pelanggan'])) {
+    $id = $_GET['id'];
+    $model = new Main();
+    $model->delete_pelanggan($id);
     header("location:../view/admin/pelanggan/index.php");
 }

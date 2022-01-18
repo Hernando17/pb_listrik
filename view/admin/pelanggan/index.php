@@ -2,6 +2,10 @@
 
 session_start();
 
+if ($_SESSION['id_level'] != "1") {
+    header("location:#");
+}
+
 require "../../../core/init.php";
 
 $model = new Main();
@@ -65,7 +69,7 @@ $index = 1;
             </div>
     </nav>
     <div class="container" style="margin-top:3%;">
-        <a href="#" class="btn btn-success" style="margin:12px;">+</a>
+        <a href="create.php" class="btn btn-success" style="margin:12px;">+</a>
         <div class="container">
             <div class="card" style="
         border-radius:10px;
@@ -94,8 +98,8 @@ $index = 1;
                                         <td><?= $r->nama_pelanggan; ?></td>
                                         <td><?= $r->nomor_kwh; ?></td>
                                         <td>
-                                            <a href="#" class="btn btn-primary">Ubah</a>
-                                            <form action="#" method="post" class="d-inline">
+                                            <a href="edit.php?id=<?= $r->id_pelanggan; ?>" class="btn btn-primary">Ubah</a>
+                                            <form action="../../../core/model.php?id=<?= $r->id_pelanggan; ?>" method="post" class="d-inline">
                                                 <button type="submit" class="btn btn-danger" name="delete_pelanggan" onclick="return confirm('Apakah anda yakin?')">Hapus</button>
                                             </form>
                                         </td>
