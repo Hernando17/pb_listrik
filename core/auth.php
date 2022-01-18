@@ -22,7 +22,6 @@ class Auth extends Connection
                     if ($row['id_level'] == "1") {
                         $_SESSION['username'] = $username;
                         $_SESSION['id_level'] = "1";
-                        header("location:../view/admin/index.php");
                     }
                 }
             }
@@ -32,7 +31,6 @@ class Auth extends Connection
                     if ($row['id_level' == "2"]) {
                         $_SESSION['username'] = $username;
                         $_SESSION['id_level'] = "2";
-                        header("location:../view/admin/index.php");
                     }
                 }
             }

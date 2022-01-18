@@ -71,9 +71,10 @@ class Main extends Connection
 
     public function edit_penggunaan($id)
     {
-        $sql = mysqli_query($this->conn, "SELECT * FROM penggunaan WHERE id_penggunaan='$id'");
+        $sql = "SELECT * FROM penggunaan WHERE id_penggunaan='$id'";
+        $bind = $this->conn->query($sql);
 
-        while ($obj = $sql->fetch_object()) {
+        while ($obj = $bind->fetch_object()) {
             $baris = $obj;
         }
         return $baris;
@@ -81,12 +82,33 @@ class Main extends Connection
 
     public function update_penggunaan($id, $id_pelanggan, $bulan, $tahun, $meter_awal, $meter_akhir)
     {
-        $sql = mysqli_query($this->conn, "UPDATE penggunaan SET id_pelanggan='$id_pelanggan', bulan='$bulan', tahun='$tahun', meter_awal='$meter_awal', meter_akhir='$meter_akhir' WHERE id_penggunaan='$id'");
+        $sql = "UPDATE penggunaan SET id_pelanggan='$id_pelanggan', bulan='$bulan', tahun='$tahun', meter_awal='$meter_awal', meter_akhir='$meter_akhir' WHERE id_penggunaan='$id'";
+        $bind = $this->conn->query($sql);
     }
 
     public function delete_penggunaan($id)
     {
         $sql = "DELETE FROM penggunaan WHERE id_penggunaan='$id'";
+        $bind = $this->conn->query($sql);
+    }
+
+    public function pelanggan()
+    {
+        $sql = "SELECT * FROM pelanggan";
+        $bind = $this->conn->query($sql);
+
+        while ($obj = $bind->fetch_object()) {
+            $baris[] = $obj;
+        }
+
+        if (!empty($baris)) {
+            return $baris;
+        }
+    }
+
+    public function create_pelanggan($username, $password, $nomor_kwh, $nama_pelanggan, $alamat, $id_tarif)
+    {
+        $sql = "INSERT INTO pelanggan (username, password, nomor_kwh, nama_pelanggan, alamat, id_tarif) VALUES ('$username', '$password', '$nomor_kwh', '$nama_pelanggan', '$alamat', '$id_tarif')";
         $bind = $this->conn->query($sql);
     }
 }

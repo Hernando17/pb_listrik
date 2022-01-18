@@ -40,7 +40,7 @@ $data = $model->edit_penggunaan($id);
                         <a class="nav-link" href="../admin/index.php">Admin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pelanggan</a>
+                        <a class="nav-link" href="../pelanggan/index.php">Pelanggan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Tagihan</a>

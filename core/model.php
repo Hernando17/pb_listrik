@@ -8,6 +8,7 @@ if (isset($_POST['login'])) {
     $password = $_POST['password'];
     $model = new Auth();
     $model->auth($username, $password);
+    header("location:../view/admin/index.php");
 }
 
 // Create new admin
@@ -72,4 +73,18 @@ if (isset($_POST['delete_penggunaan'])) {
     $model = new Main();
     $model->delete_penggunaan($id);
     header("location:../view/admin/penggunaan/index.php");
+}
+
+// Create Pelanggan
+if (isset($_POST['create_pelanggan'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $nomor_kwh = $_POST['nomor_kwh'];
+    $nama_pelanggan = $_POST['nama_pelanggan'];
+    $alamat = $_POST['alamat'];
+    $id_tarif = $_POST['id_tarif'];
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    $model = new Main();
+    $model->create_pelanggan($username, $password, $nomor_kwh, $nama_pelanggan, $alamat, $id_tarif);
+    header("location:../view/admin/pelanggan/index.php");
 }
