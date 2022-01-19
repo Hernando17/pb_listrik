@@ -123,9 +123,29 @@ class Main extends Connection
         return $baris;
     }
 
+    public function update_pelanggan($id, $username, $nomor_kwh, $nama_pelanggan, $alamat, $id_tarif, $id_level)
+    {
+        $sql = "UPDATE pelanggan SET username='$username', nama_pelanggan='$nama_pelanggan', nomor_kwh='$nomor_kwh', id_tarif='$id_tarif', alamat='$alamat', id_level='$id_level' WHERE id_pelanggan='$id'";
+        $bind = $this->conn->query($sql);
+    }
+
     public function delete_pelanggan($id)
     {
         $sql = "DELETE FROM pelanggan WHERE id_pelanggan='$id';";
         $bind = $this->conn->query($sql);
+    }
+
+    public function tagihan()
+    {
+        $sql = "SELECT * FROM tagihan";
+        $bind = $this->conn->query($sql);
+
+        while ($obj = $bind->fetch_object()) {
+            $baris[] = $obj;
+        }
+
+        if (!empty($baris)) {
+            return $baris;
+        }
     }
 }

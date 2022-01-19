@@ -41,16 +41,16 @@ $data = $model->edit_pelanggan($id);
                         <a class="nav-link" href="../penggunaan/index.php">Penggunaan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Admin</a>
+                        <a class="nav-link" href="../admin/index.php">Admin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="../pelanggan/index.php">Pelanggan</a>
+                        <a class="nav-link active" href="index.php">Pelanggan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tagihan</a>
+                        <a class="nav-link" href="../tagihan/index.php">Tagihan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pembayaran</a>
+                        <a class="nav-link" href="../pembayaran/index.php">Pembayaran</a>
                     </li>
                 </ul>
             </div>
@@ -78,7 +78,7 @@ $data = $model->edit_pelanggan($id);
             border-radius:10px;
             ">
             <div class="card-body m-4">
-                <form action="../../../core/model.php" method="post">
+                <form action="../../../core/model.php?id=<?= $id; ?>" method="post">
                     <div class="row">
                         <div class="col">
                             <label for="nama_pelanggan">Nama Pelanggan</label>
@@ -86,15 +86,15 @@ $data = $model->edit_pelanggan($id);
                             <label for="username">Username</label>
                             <input type="text" class="form-control mb-3" name="username" value="<?= $data->username; ?> " />
                             <a href="index.php" class="btn btn-primary">Kembali</a>
-                            <button type="submit" name="create_pelanggan" class="btn btn-success">Konfirmasi</button>
+                            <button type="submit" name="update_pelanggan" class="btn btn-success">Konfirmasi</button>
                         </div>
                         <div class="col">
                             <label for="nomor_kwh">Nomor KWH</label>
-                            <input type="text" class="form-control mb-2" name="nomor_kwh" />
+                            <input type="text" class="form-control mb-2" name="nomor_kwh" value="<?= $data->nomor_kwh; ?>" />
                             <label for="id_tarif">ID Tarif</label>
-                            <input type="text" class="form-control mb-2" name="id_tarif" />
+                            <input type="text" class="form-control mb-2" name="id_tarif" value="<?= $data->id_tarif; ?>" />
                             <label for="alamat">Alamat</label>
-                            <input type="text" class="form-control mb-2" name="alamat" />
+                            <input type="text" class="form-control mb-2" name="alamat" value="<?= $data->alamat; ?>" />
                         </div>
                     </div>
 

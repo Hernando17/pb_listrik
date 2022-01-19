@@ -2,11 +2,8 @@
 
 session_start();
 
-if ($_SESSION['id_level'] != "1") {
-    header("location:#");
-}
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +12,7 @@ if ($_SESSION['id_level'] != "1") {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Admin | Pembayaran Listrik</title>
+    <title>Tambah Tagihan | Pembayaran Listrik</title>
     <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 </head>
 
@@ -35,13 +32,13 @@ if ($_SESSION['id_level'] != "1") {
                         <a class="nav-link" href="../penggunaan/index.php">Penggunaan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.php">Admin</a>
+                        <a class="nav-link" href="../admin/index.php">Admin</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../pelanggan/index.php">Pelanggan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../tagihan/index.php">Tagihan</a>
+                        <a class="nav-link active" href="index.php">Tagihan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../pembayaran/index.php">Pembayaran</a>
@@ -62,30 +59,34 @@ if ($_SESSION['id_level'] != "1") {
                 </ul>
             </div>
     </nav>
-
-    <div class="container mt-4" style="
-    width:50%;
-    ">
-        <h4 class="mb-3">Tambah data admin</h4>
+    <div class="container mt-4" style="width:50%;">
+        <h4 class="mb-3">Tambah data tagihan</h4>
         <div class="card" style="
-            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-            border-radius:10px;
-            ">
-            <div class="card-body m-4">
-                <form action="../../../core/model.php" method="post">
-                    <label for="nama_admin">Nama Admin</label>
-                    <input type="text" class="form-control mb-2 " name="nama_admin" />
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control mb-2" name="username" />
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control mb-3" name="password" />
-                    <a href="index.php" class="btn btn-primary">Kembali</a>
-                    <button type="submit" name="create_admin" class="btn btn-success">Konfirmasi</button>
-                </form>
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius:10px;
+        ">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <label for="id_penggunaan" class="form-label">ID Penggunaan</label>
+                        <select id="id_penggunaan" class="form-select mb-2" name="id_outlet">
+                            <option>asdasdasd</option>
+                            <option>asdasdasd</option>
+                            <option>asdasdasd</option>
+                        </select>
 
+                        <label for="id_pelanggan" class="form-label">ID Pelanggan</label>
+                        <input type="text" class="form-control" name="id_pelanggan">
+
+                    </div>
+                    <div class="col">
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
 </body>
 
 <footer>

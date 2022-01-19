@@ -11,8 +11,8 @@ class Auth extends Connection
 
     public function auth($username, $password)
     {
-        $admin = mysqli_query($this->conn, "SELECT * FROM admin WHERE username='$username'");
-        $pelanggan = mysqli_query($this->conn, "SELECT * FROM pelanggan WHERE username='$username'");
+        $admin = $this->conn->query("SELECT * FROM admin WHERE username='$username'");
+        $pelanggan = $this->conn->query("SELECT * FROM pelanggan WHERE username='$username'");
         $cekadmin = mysqli_num_rows($admin);
         $cekpelanggan = mysqli_num_rows($pelanggan);
 

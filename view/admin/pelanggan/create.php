@@ -36,16 +36,16 @@ if ($_SESSION['id_level'] != "1") {
                         <a class="nav-link" href="../penggunaan/index.php">Penggunaan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Admin</a>
+                        <a class="nav-link" href="../admin/index.php">Admin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="../pelanggan/index.php">Pelanggan</a>
+                        <a class="nav-link active" href="index.php">Pelanggan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tagihan</a>
+                        <a class="nav-link" href="../tagihan/index.php">Tagihan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pembayaran</a>
+                        <a class="nav-link" href="../pembayaran/index.php">Pembayaran</a>
                     </li>
                 </ul>
             </div>

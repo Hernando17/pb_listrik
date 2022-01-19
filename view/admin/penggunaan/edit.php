@@ -43,10 +43,10 @@ $data = $model->edit_penggunaan($id);
                         <a class="nav-link" href="../pelanggan/index.php">Pelanggan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tagihan</a>
+                        <a class="nav-link" href="../tagihan/index.php">Tagihan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pembayaran</a>
+                        <a class="nav-link" href="../pembayaran.index.php">Pembayaran</a>
                     </li>
                 </ul>
             </div>

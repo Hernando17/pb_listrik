@@ -89,6 +89,20 @@ if (isset($_POST['create_pelanggan'])) {
     header("location:../view/admin/pelanggan/index.php");
 }
 
+// Update pelanggan
+if (isset($_POST['update_pelanggan'])) {
+    $id = $_GET['id'];
+    $username = $_POST['username'];
+    $nomor_kwh = $_POST['nomor_kwh'];
+    $nama_pelanggan = $_POST['nama_pelanggan'];
+    $alamat = $_POST['alamat'];
+    $id_tarif = $_POST['id_tarif'];
+    $id_level = "2";
+    $model = new Main();
+    $model->update_pelanggan($id, $username, $nomor_kwh, $nama_pelanggan, $alamat, $id_tarif, $id_level);
+    header("location:../view/admin/pelanggan/index.php");
+}
+
 // Delete Pelanggan
 if (isset($_POST['delete_pelanggan'])) {
     $id = $_GET['id'];

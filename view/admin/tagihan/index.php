@@ -7,9 +7,10 @@ if ($_SESSION['id_level'] != "1") {
 }
 
 require "../../../core/init.php";
-$model = new Main();
 
+$model = new Main();
 $index = 1;
+
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +20,7 @@ $index = 1;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Admin | Pembayaran Listrik</title>
+    <title>Data Tagihan | Pembayaran Listrik</title>
     <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 </head>
 
@@ -39,13 +40,13 @@ $index = 1;
                         <a class="nav-link" href="../penggunaan/index.php">Penggunaan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.php">Admin</a>
+                        <a class="nav-link" href="../admin/index.php">Admin</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../pelanggan/index.php">Pelanggan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../tagihan/index.php">Tagihan</a>
+                        <a class="nav-link active" href="index.php">Tagihan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../pembayaran/index.php">Pembayaran</a>
@@ -66,61 +67,65 @@ $index = 1;
                 </ul>
             </div>
     </nav>
+
     <div class="container" style="margin-top:3%;">
-        <a href=" create.php" class="btn btn-success" style="margin:12px;">+</a>
+        <a href="create.php" class="btn btn-success" style="margin:12px;">+</a>
         <div class="container">
-            <div class=" card" style="
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            <div class="card" style="
         border-radius:10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         ">
                 <div class="card-body">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Username</th>
-                                <th>Nama</th>
-                                <th>ID Level</th>
+                                <th>ID Penggunaan</th>
+                                <th>ID Pelanggan</th>
+                                <th>Bulan</th>
+                                <th>Tahun</th>
+                                <th>Jumlah Meter</th>
+                                <th>status</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-
-                            <?php
-                            $result = $model->admin();
-                            if (!empty($result)) {
-                                foreach ($result as $r) : ?>
-                                    <tr>
-                                        <th><?= $index++ ?></th>
-                                        <td><?= $r->username; ?></td>
-                                        <td><?= $r->nama_admin; ?></td>
-                                        <td><?= $r->id_level; ?></td>
-                                        <td>
-                                            <a href="edit.php?id=<?= $r->id_admin; ?>" class="btn btn-primary">Ubah</a>
-                                            <form action="../../../core/model.php?id=<?= $r->id_admin; ?>" method="post" class="d-inline">
-                                                <button type="submit" name="delete_admin" onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger">Hapus</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                <?php endforeach;
-                            } else { ?>
-                                <td>Data tidak ditemukan</td>
+                            <tr>
                                 <?php
 
-                                for ($i = 0; $i <= 5; $i++) {
-                                    echo "<td></td>";
+                                $result = $model->tagihan();
+
+                                if (!empty($result)) {
+                                    foreach ($result as $r) : ?>
+                                        <td><?= $index++; ?></td>
+                                        <td><?= $r->id_penggunaan; ?></td>
+                                        <td><?= $r->id_pelanggan; ?></td>
+                                        <td><?= $r->bulan; ?></td>
+                                        <td><?= $r->tahun; ?></td>
+                                        <td><?= $r->jumlah_meter; ?></td>
+                                        <td><?= $r->status; ?></td>
+                                        <td>
+                                            <a href="#" class="btn btn-primary">Ubah</a>
+                                            <form action="#" method="post" class="d-inline">
+                                                <button type="submit" class="btn btn-danger" name="delete_tagihan" onclick="return confirm('Apakah anda yakin?')">Hapus</button>
+                                            </form>
+                                        </td>
+                                <?php endforeach;
+                                } else {
+                                    echo "<td>Data tidak ditemukan</td>";
+                                    for ($i = 0; $i <= 6; $i++) {
+                                        echo "<td></td>";
+                                    }
                                 }
 
                                 ?>
-                            <?php } ?>
+                            </tr>
                         </tbody>
-
                     </table>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
 
 <footer>
