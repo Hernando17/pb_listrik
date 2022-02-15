@@ -47,6 +47,9 @@ $index = 1;
                         <a class="nav-link active" href="index.php">Pelanggan</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="../tarif/index.php">Tarif</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="../tagihan/index.php">Tagihan</a>
                     </li>
                     <li class="nav-item">

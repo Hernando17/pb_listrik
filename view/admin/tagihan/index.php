@@ -46,6 +46,9 @@ $index = 1;
                         <a class="nav-link" href="../pelanggan/index.php">Pelanggan</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="../tarif/index.php">Tarif</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" href="index.php">Tagihan</a>
                     </li>
                     <li class="nav-item">
@@ -90,13 +93,13 @@ $index = 1;
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <?php
+                            <?php
 
-                                $result = $model->tagihan();
+                            $result = $model->tagihan();
 
-                                if (!empty($result)) {
-                                    foreach ($result as $r) : ?>
+                            if (!empty($result)) {
+                                foreach ($result as $r) : ?>
+                                    <tr>
                                         <td><?= $index++; ?></td>
                                         <td><?= $r->id_penggunaan; ?></td>
                                         <td><?= $r->id_pelanggan; ?></td>
@@ -111,15 +114,15 @@ $index = 1;
                                             </form>
                                         </td>
                                 <?php endforeach;
-                                } else {
-                                    echo "<td>Data tidak ditemukan</td>";
-                                    for ($i = 0; $i <= 6; $i++) {
-                                        echo "<td></td>";
-                                    }
+                            } else {
+                                echo "<td>Data tidak ditemukan</td>";
+                                for ($i = 0; $i <= 6; $i++) {
+                                    echo "<td></td>";
                                 }
+                            }
 
                                 ?>
-                            </tr>
+                                    </tr>
                         </tbody>
                     </table>
                 </div>

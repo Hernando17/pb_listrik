@@ -148,4 +148,36 @@ class Main extends Connection
             return $baris;
         }
     }
+
+    public function create_tagihan($id_penggunaan, $id_pelanggan, $jumlah_meter, $bulan, $tahun, $status)
+    {
+        $sql = "INSERT INTO tagihan (id_penggunaan, id_pelanggan, jumlah_meter, bulan, tahun, status) VALUES ('$id_penggunaan', '$id_pelanggan', '$jumlah_meter', '$bulan', '$tahun', '$status')";
+        $bind = $this->conn->query($sql);
+    }
+
+    public function tarif()
+    {
+        $sql = "SELECT * FROM tarif";
+        $bind = $this->conn->query($sql);
+
+        while ($obj = $bind->fetch_object()) {
+            $baris[] = $obj;
+        }
+
+        if (!empty($baris)) {
+            return $baris;
+        }
+    }
+
+    public function create_tarif($daya, $tarifperkwh)
+    {
+        $sql = "INSERT INTO tarif (daya, tarifperkwh) VALUES ('$daya', '$tarifperkwh')";
+        $bind = $this->conn->query($sql);
+    }
+
+    public function delete_tarif($id)
+    {
+        $sql = "DELETE FROM tarif WHERE id_tarif='$id';";
+        $bind = $this->conn->query($sql);
+    }
 }

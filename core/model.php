@@ -110,3 +110,33 @@ if (isset($_POST['delete_pelanggan'])) {
     $model->delete_pelanggan($id);
     header("location:../view/admin/pelanggan/index.php");
 }
+
+// Create Tagihan
+if (isset($_POST['create_tagihan'])) {
+    $id_penggunaan = $_POST['id_penggunaan'];
+    $id_pelanggan = $_POST['id_pelanggan'];
+    $jumlah_meter = $_POST['jumlah_meter'];
+    $bulan = $_POST['bulan'];
+    $tahun = $_POST['tahun'];
+    $status = "belum_lunas";
+    $model = new Main();
+    $model->create_tagihan($id_penggunaan, $id_pelanggan, $jumlah_meter, $bulan, $tahun, $status);
+    header("location:../view/admin/tagihan/index.php");
+}
+
+// Create Tarif
+if (isset($_POST['create_tarif'])) {
+    $daya = $_POST['daya'];
+    $tarifperkwh = $_POST['tarifperkwh'];
+    $model = new Main();
+    $model->create_tarif($daya, $tarifperkwh);
+    header("location:../view/admin/tarif/index.php");
+}
+
+// Delete Tarif
+if (isset($_POST['delete_tarif'])) {
+    $id = $_GET['id'];
+    $model = new Main();
+    $model->delete_tarif($id);
+    header("location:../view/admin/tarif/index.php");
+}

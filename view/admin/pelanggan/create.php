@@ -6,6 +6,10 @@ if ($_SESSION['id_level'] != "1") {
     header("location:#");
 }
 
+require("../../../core/init.php");
+$main = new Main();
+$tarif = $main->tarif();
+
 ?>
 
 
@@ -21,48 +25,6 @@ if ($_SESSION['id_level'] != "1") {
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
-        <div class="container">
-            <a class="navbar-brand" href="#">Listrik</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="../index.php">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../penggunaan/index.php">Penggunaan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../admin/index.php">Admin</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.php">Pelanggan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../tagihan/index.php">Tagihan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../pembayaran/index.php">Pembayaran</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <div class="nav-item dropdown">
-                        <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php echo $_SESSION['username']; ?>
-                        </a>
-
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" href="../../logout.php">Logout</a></li>
-                        </ul>
-                    </div>
-                </ul>
-            </div>
-    </nav>
 
     <div class="container mt-4" style="
     width:50%;
@@ -87,7 +49,13 @@ if ($_SESSION['id_level'] != "1") {
                             <label for="nomor_kwh">Nomor KWH</label>
                             <input type="text" class="form-control mb-2" name="nomor_kwh" />
                             <label for="id_tarif">ID Tarif</label>
-                            <input type="text" class="form-control mb-2" name="id_tarif" />
+                            <select name="id_tarif" class="form-select">
+                                <?php
+                                foreach ($tarif as $t) : ?>
+                                    <option><?= $t->id_tarif; ?></option>
+                                <?php endforeach; ?>
+                                ?>
+                            </select>
                             <label for="alamat">Alamat</label>
                             <input type="text" class="form-control mb-2" name="alamat" />
                         </div>

@@ -2,6 +2,15 @@
 
 session_start();
 
+if ($_SESSION['id_level'] != "1") {
+    header("location:#");
+}
+
+require "../../../core/init.php";
+
+$main = new Main();
+$penggunaan = $main->penggunaan();
+
 ?>
 
 
@@ -17,72 +26,64 @@ session_start();
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
-        <div class="container">
-            <a class="navbar-brand" href="#">Listrik</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="../index.php">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../penggunaan/index.php">Penggunaan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../admin/index.php">Admin</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../pelanggan/index.php">Pelanggan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.php">Tagihan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../pembayaran/index.php">Pembayaran</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <div class="nav-item dropdown">
-                        <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php echo $_SESSION['username']; ?>
-                        </a>
-
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" href="../../logout.php">Logout</a></li>
-                        </ul>
-                    </div>
-                </ul>
-            </div>
-    </nav>
     <div class="container mt-4" style="width:50%;">
         <h4 class="mb-3">Tambah data tagihan</h4>
         <div class="card" style="
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         border-radius:10px;
         ">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <label for="id_penggunaan" class="form-label">ID Penggunaan</label>
-                        <select id="id_penggunaan" class="form-select mb-2" name="id_outlet">
-                            <option>asdasdasd</option>
-                            <option>asdasdasd</option>
-                            <option>asdasdasd</option>
-                        </select>
+            <div class="card-body m-4">
+                <form action="../../../core/model.php" method="post">
+                    <div class="row">
+                        <div class="col">
 
-                        <label for="id_pelanggan" class="form-label">ID Pelanggan</label>
-                        <input type="text" class="form-control" name="id_pelanggan">
+                            <label for="id_penggunaan" class="form-label">ID Penggunaan</label>
+                            <select id="id_penggunaan" class="form-select mb-2" name="id_penggunaan">
+                                <?php
+                                foreach ($penggunaan as $p) : ?>
+                                    <option><?= $p->id_penggunaan; ?></option>
+                                <?php endforeach;
+                                ?>
+                            </select>
 
+                            <label for="id_pelanggan" class="form-label">ID Pelanggan</label>
+                            <select id="id_pelanggan" class="form-select mb-2" name="id_pelanggan">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+
+                            </select>
+
+                            <label for="jumlah_meter" class="form-label">Jumlah Meter</label>
+                            <input type="text" class="form-control mb-2" name="jumlah_meter">
+
+                        </div>
+                        <div class="col">
+                            <label for="bulan" class="form-label">Bulan</label>
+                            <select id="bulan" class="form-select mb-2" name="bulan">
+                                <option>Januari</option>
+                                <option>Februari</option>
+                                <option>Maret</option>
+                                <option>April</option>
+                                <option>Mei</option>
+                                <option>Juni</option>
+                                <option>Juli</option>
+                                <option>Agustus</option>
+                                <option>September</option>
+                                <option>Oktober</option>
+                                <option>November</option>
+                                <option>Desember</option>
+                            </select>
+
+                            <label for="tahun" class="form-label">Tahun</label>
+                            <input type="text" class="form-control mb-3" name="tahun">
+
+                            <a href="index.php" class="btn btn-primary">Kembali</a>
+                            <button type="submit" name="create_tagihan" class="btn btn-success">Konfirmasi</button>
+                        </div>
                     </div>
-                    <div class="col">
-
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

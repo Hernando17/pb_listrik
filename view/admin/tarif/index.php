@@ -33,7 +33,7 @@ $index = 1;
                         <a class="nav-link" aria-current="page" href="../index.php">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.php">Penggunaan</a>
+                        <a class="nav-link" href="index.php">Penggunaan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../admin/index.php">Admin</a>
@@ -42,7 +42,7 @@ $index = 1;
                         <a class="nav-link" href="../pelanggan/index.php">Pelanggan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../tarif/index.php">Tarif</a>
+                        <a class="nav-link active" href="../tarif/index.php">Tarif</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../tagihan/index.php">Tagihan</a>
@@ -79,31 +79,25 @@ $index = 1;
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>ID Pelanggan</th>
-                                <th>Bulan</th>
-                                <th>Tahun</th>
-                                <th>Meter Awal</th>
-                                <th>Meter Akhir</th>
+                                <th>Daya</th>
+                                <th>Tarif/kwh</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
 
                             <?php
-                            $result = $model->penggunaan();
+                            $result = $model->tarif();
                             if (!empty($result)) {
                                 foreach ($result as $r) : ?>
                                     <tr>
                                         <th><?= $index++ ?></th>
-                                        <td><?= $r->id_pelanggan; ?></td>
-                                        <td><?= $r->bulan; ?></td>
-                                        <td><?= $r->tahun; ?></td>
-                                        <td><?= $r->meter_awal; ?></td>
-                                        <td><?= $r->meter_akhir; ?></td>
+                                        <td><?= $r->daya; ?></td>
+                                        <td><?= $r->tarifperkwh; ?></td>
                                         <td>
                                             <a href="edit.php?id=<?= $r->id_penggunaan; ?>" class="btn btn-primary">Ubah</a>
-                                            <form action="../../../core/model.php?id=<?= $r->id_penggunaan; ?>" method="post" class="d-inline">
-                                                <button type="submit" name="delete_penggunaan" onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger">Hapus</button>
+                                            <form action="../../../core/model.php?id=<?= $r->id_tarif; ?>" method="post" class="d-inline">
+                                                <button type="submit" name="delete_tarif" onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -112,7 +106,7 @@ $index = 1;
                                 <td>Data tidak ditemukan</td>
                                 <?php
 
-                                for ($i = 0; $i <= 5; $i++) {
+                                for ($i = 0; $i <= 2; $i++) {
                                     echo "<td></td>";
                                 }
 

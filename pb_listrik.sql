@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 18, 2022 at 01:57 AM
+-- Generation Time: Jan 21, 2022 at 02:54 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -75,15 +75,16 @@ CREATE TABLE `pelanggan` (
   `nomor_kwh` varchar(255) NOT NULL,
   `nama_pelanggan` varchar(255) NOT NULL,
   `alamat` varchar(255) NOT NULL,
-  `id_tarif` int(11) NOT NULL
+  `id_tarif` int(11) NOT NULL,
+  `id_level` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pelanggan`
 --
 
-INSERT INTO `pelanggan` (`id_pelanggan`, `username`, `password`, `nomor_kwh`, `nama_pelanggan`, `alamat`, `id_tarif`) VALUES
-(1, 'pelanggan', '$2y$10$5qlZX/eEUlYdH1YJuaEr7uwNxi66tv5.MwYdi8hHFNlTV0vgIkuJq', '123132', 'pelanggan', 'asdasdasd', 1);
+INSERT INTO `pelanggan` (`id_pelanggan`, `username`, `password`, `nomor_kwh`, `nama_pelanggan`, `alamat`, `id_tarif`, `id_level`) VALUES
+(8, 'pelanggan123 ', '$2y$10$HWjAaWSawpkyJTrLaC4ULOW.S3T4P7ek/Ox5tL96jnFF3WMU1gAtS', '123456', 'pelanggan123 ', 'adasd', 123, 2);
 
 -- --------------------------------------------------------
 
@@ -117,13 +118,6 @@ CREATE TABLE `penggunaan` (
   `meter_akhir` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `penggunaan`
---
-
-INSERT INTO `penggunaan` (`id_penggunaan`, `id_pelanggan`, `bulan`, `tahun`, `meter_awal`, `meter_akhir`) VALUES
-(9, 2, 'Januari', '2021', 1000, 2000);
-
 -- --------------------------------------------------------
 
 --
@@ -139,6 +133,13 @@ CREATE TABLE `tagihan` (
   `jumlah_meter` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tagihan`
+--
+
+INSERT INTO `tagihan` (`id_tagihan`, `id_penggunaan`, `id_pelanggan`, `bulan`, `tahun`, `jumlah_meter`, `status`) VALUES
+(1, 1, 1, 'februari', '2022', '123123', 'aktif');
 
 -- --------------------------------------------------------
 
@@ -207,7 +208,7 @@ ALTER TABLE `tarif`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `level`
@@ -219,7 +220,7 @@ ALTER TABLE `level`
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
@@ -237,7 +238,7 @@ ALTER TABLE `penggunaan`
 -- AUTO_INCREMENT for table `tagihan`
 --
 ALTER TABLE `tagihan`
-  MODIFY `id_tagihan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tagihan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tarif`
