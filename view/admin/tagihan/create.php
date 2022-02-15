@@ -10,6 +10,7 @@ require "../../../core/init.php";
 
 $main = new Main();
 $penggunaan = $main->penggunaan();
+$pelanggan = $main->pelanggan();
 
 ?>
 
@@ -48,11 +49,11 @@ $penggunaan = $main->penggunaan();
 
                             <label for="id_pelanggan" class="form-label">ID Pelanggan</label>
                             <select id="id_pelanggan" class="form-select mb-2" name="id_pelanggan">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-
+                                <?php
+                                foreach ($pelanggan as $pe) : ?>
+                                    <option><?= $pe->id_pelanggan; ?></option>
+                                <?php endforeach;
+                                ?>
                             </select>
 
                             <label for="jumlah_meter" class="form-label">Jumlah Meter</label>

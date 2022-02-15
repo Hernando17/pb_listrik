@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2022 at 02:54 AM
+-- Generation Time: Feb 15, 2022 at 03:27 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -40,7 +40,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `username`, `password`, `nama_admin`, `id_level`) VALUES
-(7, 'admin', '$2y$10$5qlZX/eEUlYdH1YJuaEr7uwNxi66tv5.MwYdi8hHFNlTV0vgIkuJq', 'admin', 1);
+(17, 'admin', '$2y$10$DHXwnHEUaDo4VdhkDhJB0OO5FIqV2nLzX58XWFvaU5x5rF2zRPRMm', 'admin', 1);
 
 -- --------------------------------------------------------
 
@@ -58,9 +58,7 @@ CREATE TABLE `level` (
 --
 
 INSERT INTO `level` (`id_level`, `nama_level`) VALUES
-(1, 'admin'),
-(2, 'pelanggan'),
-(3, 'bank');
+(4, 'admin');
 
 -- --------------------------------------------------------
 
@@ -78,13 +76,6 @@ CREATE TABLE `pelanggan` (
   `id_tarif` int(11) NOT NULL,
   `id_level` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `pelanggan`
---
-
-INSERT INTO `pelanggan` (`id_pelanggan`, `username`, `password`, `nomor_kwh`, `nama_pelanggan`, `alamat`, `id_tarif`, `id_level`) VALUES
-(8, 'pelanggan123 ', '$2y$10$HWjAaWSawpkyJTrLaC4ULOW.S3T4P7ek/Ox5tL96jnFF3WMU1gAtS', '123456', 'pelanggan123 ', 'adasd', 123, 2);
 
 -- --------------------------------------------------------
 
@@ -134,13 +125,6 @@ CREATE TABLE `tagihan` (
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tagihan`
---
-
-INSERT INTO `tagihan` (`id_tagihan`, `id_penggunaan`, `id_pelanggan`, `bulan`, `tahun`, `jumlah_meter`, `status`) VALUES
-(1, 1, 1, 'februari', '2022', '123123', 'aktif');
-
 -- --------------------------------------------------------
 
 --
@@ -161,7 +145,8 @@ CREATE TABLE `tarif` (
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id_admin`);
+  ADD PRIMARY KEY (`id_admin`),
+  ADD KEY `id_level` (`id_level`);
 
 --
 -- Indexes for table `level`
@@ -173,13 +158,18 @@ ALTER TABLE `level`
 -- Indexes for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  ADD PRIMARY KEY (`id_pelanggan`);
+  ADD PRIMARY KEY (`id_pelanggan`),
+  ADD KEY `id_tarif` (`id_tarif`,`id_level`),
+  ADD KEY `id_level` (`id_level`);
 
 --
 -- Indexes for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  ADD PRIMARY KEY (`id_pembayaran`);
+  ADD PRIMARY KEY (`id_pembayaran`),
+  ADD KEY `id_tagihan` (`id_tagihan`,`id_pelanggan`,`id_admin`),
+  ADD KEY `id_admin` (`id_admin`),
+  ADD KEY `id_pelanggan` (`id_pelanggan`);
 
 --
 -- Indexes for table `penggunaan`
@@ -192,7 +182,9 @@ ALTER TABLE `penggunaan`
 -- Indexes for table `tagihan`
 --
 ALTER TABLE `tagihan`
-  ADD PRIMARY KEY (`id_tagihan`);
+  ADD PRIMARY KEY (`id_tagihan`),
+  ADD KEY `id_penggunaan` (`id_penggunaan`,`id_pelanggan`),
+  ADD KEY `id_pelanggan` (`id_pelanggan`);
 
 --
 -- Indexes for table `tarif`
@@ -208,19 +200,19 @@ ALTER TABLE `tarif`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `level`
 --
 ALTER TABLE `level`
-  MODIFY `id_level` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_level` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
@@ -238,13 +230,44 @@ ALTER TABLE `penggunaan`
 -- AUTO_INCREMENT for table `tagihan`
 --
 ALTER TABLE `tagihan`
-  MODIFY `id_tagihan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_tagihan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tarif`
 --
 ALTER TABLE `tarif`
-  MODIFY `id_tarif` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tarif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `pelanggan`
+--
+ALTER TABLE `pelanggan`
+  ADD CONSTRAINT `pelanggan_ibfk_1` FOREIGN KEY (`id_tarif`) REFERENCES `tarif` (`id_tarif`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id_admin`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pembayaran_ibfk_2` FOREIGN KEY (`id_tagihan`) REFERENCES `tagihan` (`id_tagihan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pembayaran_ibfk_3` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `penggunaan`
+--
+ALTER TABLE `penggunaan`
+  ADD CONSTRAINT `penggunaan_ibfk_1` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tagihan`
+--
+ALTER TABLE `tagihan`
+  ADD CONSTRAINT `tagihan_ibfk_1` FOREIGN KEY (`id_penggunaan`) REFERENCES `penggunaan` (`id_penggunaan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tagihan_ibfk_2` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

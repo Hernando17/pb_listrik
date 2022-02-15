@@ -107,12 +107,13 @@ $index = 1;
                                         <td><?= $r->tahun; ?></td>
                                         <td><?= $r->jumlah_meter; ?></td>
                                         <td><?= $r->status; ?></td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary">Ubah</a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button type="submit" class="btn btn-danger" name="delete_tagihan" onclick="return confirm('Apakah anda yakin?')">Hapus</button>
-                                            </form>
-                                        </td>
+                                        <form action="../../../core/model.php?id_lunas=<?= $r->id_tagihan; ?>" method="post">
+                                            <?php
+                                            if ($r->status == "belum_lunas") {
+                                                echo '<td><button type="submit" class="btn btn-success" name="lunas">Lunas</button></td>';
+                                            }
+                                            ?>
+                                        </form>
                                 <?php endforeach;
                             } else {
                                 echo "<td>Data tidak ditemukan</td>";

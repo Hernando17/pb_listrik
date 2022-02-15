@@ -155,6 +155,12 @@ class Main extends Connection
         $bind = $this->conn->query($sql);
     }
 
+    public function status($status, $input)
+    {
+        $sql = "UPDATE tagihan SET status='$input' WHERE id_tagihan='$status'";
+        $bind = $this->conn->query($sql);
+    }
+
     public function tarif()
     {
         $sql = "SELECT * FROM tarif";

@@ -140,3 +140,12 @@ if (isset($_POST['delete_tarif'])) {
     $model->delete_tarif($id);
     header("location:../view/admin/tarif/index.php");
 }
+
+// Lunas Tagihan
+if (isset($_POST['lunas'])) {
+    $status = $_GET['id_lunas'];
+    $input = "lunas";
+    $model = new Main();
+    $model->status($status, $input);
+    header("location:../view/admin/tagihan/index.php");
+}
