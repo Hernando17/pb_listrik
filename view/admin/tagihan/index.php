@@ -113,6 +113,11 @@ $index = 1;
                                                 echo '<td><button type="submit" class="btn btn-success" name="lunas">Lunas</button></td>';
                                             }
                                             ?>
+                                            <?php
+                                            if ($r->status != "belum_lunas") {
+                                                echo '<td></td>';
+                                            }
+                                            ?>
                                         </form>
                                 <?php endforeach;
                             } else {

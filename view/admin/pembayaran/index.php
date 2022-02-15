@@ -42,13 +42,13 @@ $index = 1;
                         <a class="nav-link" href="../pelanggan/index.php">Pelanggan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="../tarif/index.php">Tarif</a>
+                        <a class="nav-link" href="../tarif/index.php">Tarif</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../tagihan/index.php">Tagihan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../pembayaran/index.php">Pembayaran</a>
+                        <a class="nav-link active" href="../pembayaran/index.php">Pembayaran</a>
                     </li>
                 </ul>
             </div>
@@ -79,21 +79,29 @@ $index = 1;
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Daya</th>
-                                <th>Tarif/kwh</th>
+                                <th>ID Tagihan</th>
+                                <th>Tanggal Pembayaran</th>
+                                <th>Bulan</th>
+                                <th>Biaya Admin</th>
+                                <th>Total Bayar</th>
+                                <th>ID Admin</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
 
                             <?php
-                            $result = $model->tarif();
+                            $result = $model->pembayaran();
                             if (!empty($result)) {
                                 foreach ($result as $r) : ?>
                                     <tr>
                                         <th><?= $index++ ?></th>
-                                        <td><?= $r->daya; ?></td>
-                                        <td><?= $r->tarifperkwh; ?></td>
+                                        <td><?= $r->id_tagihan; ?></td>
+                                        <td><?= $r->tanggal_pembayaran; ?></td>
+                                        <td><?= $r->bulan_bayar; ?></td>
+                                        <td><?= $r->biaya_admin; ?></td>
+                                        <td><?= $r->total_bayar; ?></td>
+                                        <td><?= $r->id_admin; ?></td>
                                         <td>
                                             <a href="edit.php?id=<?= $r->id_penggunaan; ?>" class="btn btn-primary">Ubah</a>
                                             <form action="../../../core/model.php?id=<?= $r->id_tarif; ?>" method="post" class="d-inline">

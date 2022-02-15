@@ -33,7 +33,7 @@ $index = 1;
                         <a class="nav-link" aria-current="page" href="../index.php">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.php">Penggunaan</a>
+                        <a class="nav-link active" href="../penggunaan/index.php">Penggunaan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../admin/index.php">Admin</a>

@@ -186,4 +186,15 @@ class Main extends Connection
         $sql = "DELETE FROM tarif WHERE id_tarif='$id';";
         $bind = $this->conn->query($sql);
     }
+
+    public function pembayaran()
+    {
+        $sql = "SELECT * FROM pembayaran";
+        $bind = $this->conn->query($sql);
+
+        while ($obj = $bind->fetch_object()) {
+            $baris[] = $obj;
+        }
+        return $baris;
+    }
 }
