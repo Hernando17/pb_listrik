@@ -149,3 +149,32 @@ if (isset($_POST['lunas'])) {
     $model->status($status, $input);
     header("location:../view/admin/tagihan/index.php");
 }
+
+// Create Pembayaran
+if (isset($_POST['create_pembayaran'])) {
+    $id_tagihan = $_POST['id_tagihan'];
+    $id_pelanggan = $_POST['id_pelanggan'];
+    $tanggal_pembayaran = $_POST['tanggal_pembayaran'];
+    $bulan_bayar = $_POST['bulan_bayar'];
+    $biaya_admin = $_POST['biaya_admin'];
+    $total_bayar = $_POST['total_bayar'];
+    $id_admin = $_POST['id_admin'];
+    $model = new Main();
+    $model->create_pembayaran($id_tagihan, $id_pelanggan, $tanggal_pembayaran, $bulan_bayar, $biaya_admin, $total_bayar, $id_admin);
+    header("location:../view/admin/pembayaran/index.php");
+}
+
+// Edit Pembayaran
+if (isset($_POST['edit_pembayaran'])) {
+    $id = $_GET['id'];
+    $id_tagihan = $_POST['id_tagihan'];
+    $id_pelanggan = $_POST['id_pelanggan'];
+    $tanggal_pembayaran = $_POST['tanggal_pembayaran'];
+    $bulan_bayar = $_POST['bulan_bayar'];
+    $biaya_admin = $_POST['biaya_admin'];
+    $total_bayar = $_POST['total_bayar'];
+    $id_admin = $_POST['id_admin'];
+    $model = new Main();
+    $model->update_pembayaran($id, $id_tagihan, $id_pelanggan, $tanggal_pembayaran, $bulan_bayar, $biaya_admin, $total_bayar, $id_admin);
+    header("location:../view/admin/pembayaran/index.php");
+}

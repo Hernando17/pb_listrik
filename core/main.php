@@ -195,6 +195,32 @@ class Main extends Connection
         while ($obj = $bind->fetch_object()) {
             $baris[] = $obj;
         }
+
+        if (!empty($baris)) {
+            return $baris;
+        }
+    }
+
+    public function create_pembayaran($id_tagihan, $id_pelanggan, $tanggal_pembayaran, $bulan_bayar, $biaya_admin, $total_bayar, $id_admin)
+    {
+        $sql = "INSERT INTO pembayaran (id_tagihan, id_pelanggan, tanggal_pembayaran, bulan_bayar, biaya_admin, total_bayar, id_admin) VALUES ('$id_tagihan', '$id_pelanggan', '$tanggal_pembayaran', '$bulan_bayar', '$biaya_admin', '$total_bayar', '$id_admin')";
+        $bind = $this->conn->query($sql);
+    }
+
+    public function edit_pembayaran($id)
+    {
+        $sql = "SELECT * FROM pembayaran WHERE id_pembayaran='$id'";
+        $bind = $this->conn->query($sql);
+
+        while ($obj = $bind->fetch_object()) {
+            $baris = $obj;
+        }
         return $baris;
+    }
+
+    public function update_pembayaran($id, $id_tagihan, $id_pelanggan, $tanggal_pembayaran, $bulan_bayar, $biaya_admin, $total_bayar, $id_admin)
+    {
+        $sql = "UPDATE pembayaran SET id_tagihan='$id_tagihan', id_pelanggan='$id_pelanggan', tanggal_pembayaran='$tanggal_pembayaran', bulan_bayar='$bulan_bayar', biaya_admin='$biaya_admin', total_bayar='$total_bayar', id_admin='$id_admin' WHERE id_pembayaran='$id'";
+        $bind = $this->conn->query($sql);
     }
 }

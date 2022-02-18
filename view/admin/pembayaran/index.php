@@ -16,7 +16,7 @@ $index = 1;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penggunaan | Pembayaran Listrik</title>
+    <title>Pembayaran | Pembayaran Listrik</title>
     <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 </head>
 
@@ -103,7 +103,7 @@ $index = 1;
                                         <td><?= $r->total_bayar; ?></td>
                                         <td><?= $r->id_admin; ?></td>
                                         <td>
-                                            <a href="edit.php?id=<?= $r->id_penggunaan; ?>" class="btn btn-primary">Ubah</a>
+                                            <a href="edit.php?id=<?= $r->id_pembayaran; ?>" class="btn btn-primary">Ubah</a>
                                             <form action="../../../core/model.php?id=<?= $r->id_tarif; ?>" method="post" class="d-inline">
                                                 <button type="submit" name="delete_tarif" onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger">Hapus</button>
                                             </form>
