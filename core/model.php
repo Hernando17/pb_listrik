@@ -150,6 +150,14 @@ if (isset($_POST['lunas'])) {
     header("location:../view/admin/tagihan/index.php");
 }
 
+// Delete all tagihan
+if (isset($_POST['deleteall_tagihan'])) {
+    $status = "lunas";
+    $model = new Main();
+    $model->deletealltagihan($status);
+    header("location:../view/admin/tagihan/index.php");
+}
+
 // Create Pembayaran
 if (isset($_POST['create_pembayaran'])) {
     $id_tagihan = $_POST['id_tagihan'];
@@ -177,4 +185,28 @@ if (isset($_POST['edit_pembayaran'])) {
     $model = new Main();
     $model->update_pembayaran($id, $id_tagihan, $id_pelanggan, $tanggal_pembayaran, $bulan_bayar, $biaya_admin, $total_bayar, $id_admin);
     header("location:../view/admin/pembayaran/index.php");
+}
+
+// Delete Pembayaran
+if (isset($_POST['delete_pembayaran'])) {
+    $id = $_GET['id'];
+    $model = new Main();
+    $model->delete_pembayaran($id);
+    header("location:../view/admin/pembayaran/index.php");
+}
+
+// Search Penggunaan
+if (isset($_GET['search_penggunaan'])) {
+    $penggunaan = $_GET['penggunaan'];
+    $model = new Main();
+    $model->search_penggunaan($penggunaan);
+    header("location:../view/admin/penggunaan/search.php?search=$penggunaan");
+}
+
+// Search Admin
+if (isset($_GET['search_admin'])) {
+    $admin = $_GET['admin'];
+    $model = new Main();
+    $model->search_admin($admin);
+    header("location:../view/admin/admin/search.php?search=$admin");
 }

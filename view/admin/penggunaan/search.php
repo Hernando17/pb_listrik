@@ -104,7 +104,7 @@ $index = 1;
                         <tbody>
 
                             <?php
-                            $result = $model->penggunaan();
+                            $result = $model->search_penggunaan($_GET['search']);
                             if (!empty($result)) {
                                 foreach ($result as $r) : ?>
                                     <tr>

@@ -73,6 +73,9 @@ $index = 1;
 
     <div class="container" style="margin-top:3%;">
         <a href="create.php" class="btn btn-success" style="margin:12px;">+</a>
+        <form action="../../../core/model.php" method="post" class="d-inline">
+            <button type="submit" class="btn btn-danger" name="deleteall_tagihan" onclick="return confirm('Apakah anda yakin?')">Bersihkan</button>
+        </form>
         <div class="container">
             <div class="card" style="
         border-radius:10px;

@@ -223,4 +223,44 @@ class Main extends Connection
         $sql = "UPDATE pembayaran SET id_tagihan='$id_tagihan', id_pelanggan='$id_pelanggan', tanggal_pembayaran='$tanggal_pembayaran', bulan_bayar='$bulan_bayar', biaya_admin='$biaya_admin', total_bayar='$total_bayar', id_admin='$id_admin' WHERE id_pembayaran='$id'";
         $bind = $this->conn->query($sql);
     }
+
+    public function delete_pembayaran($id)
+    {
+        $sql = "DELETE FROM pembayaran WHERE id_pembayaran='$id'";
+        $bind = $this->conn->query($sql);
+    }
+
+    public function deletealltagihan($status)
+    {
+        $sql = "DELETE FROM tagihan WHERE status='$status'";
+        $bind = $this->conn->query($sql);
+    }
+
+    public function search_penggunaan($penggunaan)
+    {
+        $sql = "SELECT * FROM penggunaan WHERE id_penggunaan LIKE '%$penggunaan%' OR id_pelanggan LIKE '%$penggunaan%' OR bulan LIKE '%$penggunaan%' OR tahun LIKE '%$penggunaan%' OR meter_awal LIKE '%$penggunaan%' OR meter_akhir LIKE '%$penggunaan%'";
+        $bind = $this->conn->query($sql);
+
+        while ($obj = $bind->fetch_object()) {
+            $baris[] = $obj;
+        }
+
+        if (!empty($baris)) {
+            return $baris;
+        }
+    }
+
+    public function search_admin($admin)
+    {
+        $sql = "SELECT * FROM admin WHERE id_admin LIKE '%$admin%' OR username LIKE '%$admin%' OR nama_admin LIKE '%$admin%' OR id_level LIKE '$%$admin%'";
+        $bind = $this->conn->query($sql);
+
+        while ($obj = $bind->fetch_object()) {
+            $baris[] = $obj;
+        }
+
+        if (!empty($baris)) {
+            return $baris;
+        }
+    }
 }

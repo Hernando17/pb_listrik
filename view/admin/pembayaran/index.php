@@ -104,8 +104,8 @@ $index = 1;
                                         <td><?= $r->id_admin; ?></td>
                                         <td>
                                             <a href="edit.php?id=<?= $r->id_pembayaran; ?>" class="btn btn-primary">Ubah</a>
-                                            <form action="../../../core/model.php?id=<?= $r->id_tarif; ?>" method="post" class="d-inline">
-                                                <button type="submit" name="delete_tarif" onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger">Hapus</button>
+                                            <form action="../../../core/model.php?id=<?= $r->id_pembayaran; ?>" method="post" class="d-inline">
+                                                <button type="submit" name="delete_pembayaran" onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>
