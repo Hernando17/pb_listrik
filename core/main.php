@@ -263,4 +263,60 @@ class Main extends Connection
             return $baris;
         }
     }
+
+    public function search_pelanggan($pelanggan)
+    {
+        $sql = "SELECT * FROM pelanggan WHERE id_pelanggan LIKE '%$pelanggan%' OR username LIKE '%$pelanggan%' OR nomor_kwh LIKE '%$pelanggan%' OR nama_pelanggan LIKE '%$pelanggan%' OR alamat LIKE '%$pelanggan%' OR id_tarif LIKE '%$pelanggan%' OR id_level LIKE '%$pelanggan%'";
+        $bind = $this->conn->query($sql);
+
+        while ($obj = $bind->fetch_object()) {
+            $baris[] = $obj;
+        }
+
+        if (!empty($baris)) {
+            return $baris;
+        }
+    }
+
+    public function search_tarif($tarif)
+    {
+        $sql = "SELECT * FROM tarif WHERE id_tarif LIKE '%$tarif%' OR daya LIKE '%$tarif%' OR tarifperkwh LIKE '%$tarif%' ";
+        $bind = $this->conn->query($sql);
+
+        while ($obj = $bind->fetch_object()) {
+            $baris[] = $obj;
+        }
+
+        if (!empty($baris)) {
+            return $baris;
+        }
+    }
+
+    public function search_tagihan($tagihan)
+    {
+        $sql = "SELECT * FROM tagihan WHERE id_tagihan LIKE '%$tagihan%' OR id_penggunaan LIKE '%$tagihan%' OR id_pelanggan LIKE '%$tagihan%' OR bulan LIKE '%$tagihan%' OR tahun LIKE '%$tagihan%' OR jumlah_meter LIKE '%$tagihan%' OR status LIKE '%$tagihan%'";
+        $bind = $this->conn->query($sql);
+
+        while ($obj = $bind->fetch_object()) {
+            $baris[] = $obj;
+        }
+
+        if (!empty($baris)) {
+            return $baris;
+        }
+    }
+
+    public function search_pembayaran($pembayaran)
+    {
+        $sql = "SELECT * FROM pembayaran WHERE id_pembayaran LIKE '%$pembayaran%' OR id_tagihan LIKE '%$pembayaran%' OR id_pelanggan LIKE '%$pembayaran%' OR tanggal_pembayaran LIKE '%$pembayaran%' OR bulan_bayar LIKE '%$pembayaran%' OR biaya_admin LIKE '%$pembayaran%' OR total_bayar LIKE '%$pembayaran%' OR id_admin LIKE '%$pembayaran%'";
+        $bind = $this->conn->query($sql);
+
+        while ($obj = $bind->fetch_object()) {
+            $baris[] = $obj;
+        }
+
+        if (!empty($baris)) {
+            return $baris;
+        }
+    }
 }

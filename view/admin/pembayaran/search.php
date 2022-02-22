@@ -16,7 +16,7 @@ $index = 1;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penggunaan | Pembayaran Listrik</title>
+    <title>Pembayaran | Pembayaran Listrik</title>
     <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 </head>
 
@@ -33,7 +33,7 @@ $index = 1;
                         <a class="nav-link" aria-current="page" href="../index.php">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="../penggunaan/index.php">Penggunaan</a>
+                        <a class="nav-link" href="../penggunaan/index.php">Penggunaan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../admin/index.php">Admin</a>
@@ -48,7 +48,7 @@ $index = 1;
                         <a class="nav-link" href="../tagihan/index.php">Tagihan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../pembayaran/index.php">Pembayaran</a>
+                        <a class="nav-link active" href="../pembayaran/index.php">Pembayaran</a>
                     </li>
                 </ul>
             </div>
@@ -76,13 +76,12 @@ $index = 1;
                 <div class="col">
                     <form action="../../../core/model.php" method="get" class="d-inline">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Cari" aria-label="Recipient's username" aria-describedby="basic-addon2" name="penggunaan">
-                            <button type="submit" class="input-group-text" name="search_penggunaan">Cari</button>
+                            <input type="text" class="form-control" placeholder="Cari" aria-label="Recipient's username" aria-describedby="basic-addon2" name="pembayaran">
+                            <button type="submit" class="input-group-text" name="search_pembayaran">Cari</button>
                         </div>
                     </form>
                 </div>
             </div>
-
             <div class=" card" style="
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         border-radius:10px;
@@ -92,31 +91,33 @@ $index = 1;
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>ID Pelanggan</th>
+                                <th>ID Tagihan</th>
+                                <th>Tanggal Pembayaran</th>
                                 <th>Bulan</th>
-                                <th>Tahun</th>
-                                <th>Meter Awal</th>
-                                <th>Meter Akhir</th>
+                                <th>Biaya Admin</th>
+                                <th>Total Bayar</th>
+                                <th>ID Admin</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
 
                             <?php
-                            $result = $model->penggunaan();
+                            $result = $model->search_pembayaran($_GET['search']);
                             if (!empty($result)) {
                                 foreach ($result as $r) : ?>
                                     <tr>
                                         <th><?= $index++ ?></th>
-                                        <td><?= $r->id_pelanggan; ?></td>
-                                        <td><?= $r->bulan; ?></td>
-                                        <td><?= $r->tahun; ?></td>
-                                        <td><?= $r->meter_awal; ?></td>
-                                        <td><?= $r->meter_akhir; ?></td>
+                                        <td><?= $r->id_tagihan; ?></td>
+                                        <td><?= $r->tanggal_pembayaran; ?></td>
+                                        <td><?= $r->bulan_bayar; ?></td>
+                                        <td><?= $r->biaya_admin; ?></td>
+                                        <td><?= $r->total_bayar; ?></td>
+                                        <td><?= $r->id_admin; ?></td>
                                         <td>
-                                            <a href="edit.php?id=<?= $r->id_penggunaan; ?>" class="btn btn-primary">Ubah</a>
-                                            <form action="../../../core/model.php?id=<?= $r->id_penggunaan; ?>" method="post" class="d-inline">
-                                                <button type="submit" name="delete_penggunaan" onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger">Hapus</button>
+                                            <a href="edit.php?id=<?= $r->id_pembayaran; ?>" class="btn btn-primary">Ubah</a>
+                                            <form action="../../../core/model.php?id=<?= $r->id_pembayaran; ?>" method="post" class="d-inline">
+                                                <button type="submit" name="delete_pembayaran" onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -125,7 +126,7 @@ $index = 1;
                                 <td>Data tidak ditemukan</td>
                                 <?php
 
-                                for ($i = 0; $i <= 5; $i++) {
+                                for ($i = 0; $i <= 2; $i++) {
                                     echo "<td></td>";
                                 }
 

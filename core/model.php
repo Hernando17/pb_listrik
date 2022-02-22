@@ -210,3 +210,35 @@ if (isset($_GET['search_admin'])) {
     $model->search_admin($admin);
     header("location:../view/admin/admin/search.php?search=$admin");
 }
+
+// Search Pelanggan
+if (isset($_GET['search_pelanggan'])) {
+    $pelanggan = $_GET['pelanggan'];
+    $model = new Main();
+    $model->search_pelanggan($pelanggan);
+    header("location:../view/admin/pelanggan/search.php?search=$pelanggan");
+}
+
+// Search Tarif
+if (isset($_GET['search_tarif'])) {
+    $tarif = $_GET['tarif'];
+    $model = new Main();
+    $model->search_tarif($tarif);
+    header("location:../view/admin/tarif/search.php?search=$tarif");
+}
+
+// Search Tagihan
+if (isset($_GET['search_tagihan'])) {
+    $tagihan = $_GET['tagihan'];
+    $model = new Main();
+    $model->search_tagihan($tagihan);
+    header("location:../view/admin/tagihan/search.php?search=$tagihan");
+}
+
+// Search Pembayaran
+if (isset($_GET['search_pembayaran'])) {
+    $pembayaran = $_GET['pembayaran'];
+    $model = new Main();
+    $model->search_pembayaran($pembayaran);
+    header("location:../view/admin/pembayaran/search.php?search=$pembayaran");
+}

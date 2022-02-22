@@ -68,22 +68,22 @@ $index = 1;
     </nav>
 
     <div class="container" style="margin-top:3%;">
-        <div class="row m-1 mb-3">
-            <div class="col">
-                <a href=" create.php" class="btn btn-success">+</a>
-            </div>
-            <div class="col" style="margin-right:1%;">
-                <form action="../../../core/model.php" method="get" class="d-inline">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Cari Penggunaan" aria-label="Recipient's username" aria-describedby="basic-addon2" name="penggunaan">
-                        <button type="submit" class="input-group-text" name="search_penggunaan">Cari</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-
         <div class="container">
+            <div class="row mb-3">
+                <div class="col">
+                    <a href=" create.php" class="btn btn-success">+</a>
+                </div>
+                <div class="col">
+                    <form action="../../../core/model.php" method="get" class="d-inline">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Cari" aria-label="Recipient's username" aria-describedby="basic-addon2" name="penggunaan">
+                            <button type="submit" class="input-group-text" name="search_penggunaan">Cari</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
             <div class=" card" style="
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         border-radius:10px;

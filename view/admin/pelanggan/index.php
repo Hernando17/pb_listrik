@@ -72,8 +72,20 @@ $index = 1;
             </div>
     </nav>
     <div class="container" style="margin-top:3%;">
-        <a href="create.php" class="btn btn-success" style="margin:12px;">+</a>
         <div class="container">
+            <div class="row mb-3">
+                <div class="col">
+                    <a href=" create.php" class="btn btn-success">+</a>
+                </div>
+                <div class="col">
+                    <form action="../../../core/model.php" method="get" class="d-inline">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Cari" aria-label="Recipient's username" aria-describedby="basic-addon2" name="pelanggan">
+                            <button type="submit" class="input-group-text" name="search_pelanggan">Cari</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <div class="card" style="
         border-radius:10px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -90,12 +102,12 @@ $index = 1;
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <?php
-                                $result = $model->pelanggan();
+                            <?php
+                            $result = $model->pelanggan();
 
-                                if (!empty($result)) {
-                                    foreach ($result as $r) : ?>
+                            if (!empty($result)) {
+                                foreach ($result as $r) : ?>
+                                    <tr>
                                         <th><?= $index++; ?></th>
                                         <td><?= $r->username; ?></td>
                                         <td><?= $r->nama_pelanggan; ?></td>
@@ -106,15 +118,15 @@ $index = 1;
                                                 <button type="submit" class="btn btn-danger" name="delete_pelanggan" onclick="return confirm('Apakah anda yakin?')">Hapus</button>
                                             </form>
                                         </td>
-                                <?php endforeach;
-                                } else {
-                                    echo "<td>Data tidak ditemukan</td>";
-                                    for ($i = 0; $i <= 3; $i++) {
-                                        echo "<td></td>";
-                                    }
+                                    </tr>
+                            <?php endforeach;
+                            } else {
+                                echo "<td>Data tidak ditemukan</td>";
+                                for ($i = 0; $i <= 3; $i++) {
+                                    echo "<td></td>";
                                 }
-                                ?>
-                            </tr>
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>

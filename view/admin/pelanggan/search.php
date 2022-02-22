@@ -2,12 +2,17 @@
 
 session_start();
 
-require_once "../../../core/init.php";
+if ($_SESSION['id_level'] != "1") {
+    header("location:#");
+}
+
+require "../../../core/init.php";
 
 $model = new Main();
-$index = 1;
 
+$index = 1;
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +21,7 @@ $index = 1;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penggunaan | Pembayaran Listrik</title>
+    <title>Pelanggan | Pembayaran Listrik</title>
     <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 </head>
 
@@ -33,13 +38,13 @@ $index = 1;
                         <a class="nav-link" aria-current="page" href="../index.php">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="../penggunaan/index.php">Penggunaan</a>
+                        <a class="nav-link" href="../penggunaan/index.php">Penggunaan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../admin/index.php">Admin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../pelanggan/index.php">Pelanggan</a>
+                        <a class="nav-link active" href="index.php">Pelanggan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../tarif/index.php">Tarif</a>
@@ -66,7 +71,6 @@ $index = 1;
                 </ul>
             </div>
     </nav>
-
     <div class="container" style="margin-top:3%;">
         <div class="container">
             <div class="row mb-3">
@@ -76,70 +80,62 @@ $index = 1;
                 <div class="col">
                     <form action="../../../core/model.php" method="get" class="d-inline">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Cari" aria-label="Recipient's username" aria-describedby="basic-addon2" name="penggunaan">
-                            <button type="submit" class="input-group-text" name="search_penggunaan">Cari</button>
+                            <input type="text" class="form-control" placeholder="Cari" aria-label="Recipient's username" aria-describedby="basic-addon2" name="pelanggan">
+                            <button type="submit" class="input-group-text" name="search_pelanggan">Cari</button>
                         </div>
                     </form>
                 </div>
             </div>
-
-            <div class=" card" style="
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            <div class="card" style="
         border-radius:10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         ">
                 <div class="card-body">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>ID Pelanggan</th>
-                                <th>Bulan</th>
-                                <th>Tahun</th>
-                                <th>Meter Awal</th>
-                                <th>Meter Akhir</th>
+                                <th>Username</th>
+                                <th>Nama Pelanggan</th>
+                                <th>Nomor Kwh</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-
                             <?php
-                            $result = $model->penggunaan();
+                            $result = $model->search_pelanggan($_GET['search']);
+
                             if (!empty($result)) {
                                 foreach ($result as $r) : ?>
                                     <tr>
-                                        <th><?= $index++ ?></th>
-                                        <td><?= $r->id_pelanggan; ?></td>
-                                        <td><?= $r->bulan; ?></td>
-                                        <td><?= $r->tahun; ?></td>
-                                        <td><?= $r->meter_awal; ?></td>
-                                        <td><?= $r->meter_akhir; ?></td>
+                                        <th><?= $index++; ?></th>
+                                        <td><?= $r->username; ?></td>
+                                        <td><?= $r->nama_pelanggan; ?></td>
+                                        <td><?= $r->nomor_kwh; ?></td>
                                         <td>
-                                            <a href="edit.php?id=<?= $r->id_penggunaan; ?>" class="btn btn-primary">Ubah</a>
-                                            <form action="../../../core/model.php?id=<?= $r->id_penggunaan; ?>" method="post" class="d-inline">
-                                                <button type="submit" name="delete_penggunaan" onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger">Hapus</button>
+                                            <a href="edit.php?id=<?= $r->id_pelanggan; ?>" class="btn btn-primary">Ubah</a>
+                                            <form action="../../../core/model.php?id=<?= $r->id_pelanggan; ?>" method="post" class="d-inline">
+                                                <button type="submit" class="btn btn-danger" name="delete_pelanggan" onclick="return confirm('Apakah anda yakin?')">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>
-                                <?php endforeach;
-                            } else { ?>
-                                <td>Data tidak ditemukan</td>
-                                <?php
-
-                                for ($i = 0; $i <= 5; $i++) {
+                            <?php endforeach;
+                            } else {
+                                echo "<td>Data tidak ditemukan</td>";
+                                for ($i = 0; $i <= 3; $i++) {
                                     echo "<td></td>";
                                 }
-
-                                ?>
-
-                            <?php } ?>
+                            }
+                            ?>
                         </tbody>
-
                     </table>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
+
 <footer>
     <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
 </footer>

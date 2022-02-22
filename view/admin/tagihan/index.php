@@ -72,11 +72,24 @@ $index = 1;
     </nav>
 
     <div class="container" style="margin-top:3%;">
-        <a href="create.php" class="btn btn-success" style="margin:12px;">+</a>
-        <form action="../../../core/model.php" method="post" class="d-inline">
-            <button type="submit" class="btn btn-danger" name="deleteall_tagihan" onclick="return confirm('Apakah anda yakin?')">Bersihkan</button>
-        </form>
         <div class="container">
+            <div class="row mb-3">
+                <div class="col">
+                    <a href="create.php" class="btn btn-success">+</a>
+                    <form action="../../../core/model.php" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-danger" name="deleteall_tagihan" onclick="return confirm('Apakah anda yakin?')">Bersihkan</button>
+                    </form>
+                </div>
+                <div class="col">
+                    <form action="../../../core/model.php" method="get" class="d-inline">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Cari" aria-label="Recipient's username" aria-describedby="basic-addon2" name="tagihan">
+                            <button type="submit" class="input-group-text" name="search_tagihan">Cari</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
             <div class="card" style="
         border-radius:10px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;

@@ -16,7 +16,7 @@ $index = 1;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarif| Pembayaran Listrik</title>
+    <title>Tarif | Pembayaran Listrik</title>
     <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 </head>
 
@@ -68,8 +68,20 @@ $index = 1;
     </nav>
 
     <div class="container" style="margin-top:3%;">
-        <a href=" create.php" class="btn btn-success" style="margin:12px;">+</a>
         <div class="container">
+            <div class="row mb-3">
+                <div class="col">
+                    <a href=" create.php" class="btn btn-success">+</a>
+                </div>
+                <div class="col">
+                    <form action="../../../core/model.php" method="get" class="d-inline">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Cari" aria-label="Recipient's username" aria-describedby="basic-addon2" name="tarif">
+                            <button type="submit" class="input-group-text" name="search_tarif">Cari</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <div class=" card" style="
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         border-radius:10px;
