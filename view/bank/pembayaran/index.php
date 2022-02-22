@@ -2,7 +2,7 @@
 
 session_start();
 
-if ($_SESSION['id_level'] != "1") {
+if ($_SESSION['id_level'] != "3") {
     header("location:#");
 }
 
@@ -20,7 +20,7 @@ $index = 1;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarif | Pembayaran Listrik</title>
+    <title>Pembayaran | Pembayaran Listrik</title>
     <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 </head>
 
@@ -37,22 +37,10 @@ $index = 1;
                         <a class="nav-link" aria-current="page" href="../index.php">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../penggunaan/index.php">Penggunaan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../admin/index.php">Admin</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../pelanggan/index.php">Pelanggan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="../tarif/index.php">Tarif</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="../tagihan/index.php">Tagihan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../pembayaran/index.php">Pembayaran</a>
+                        <a class="nav-link active" href="../pembayaran/index.php">Pembayaran</a>
                     </li>
                 </ul>
             </div>
@@ -80,8 +68,8 @@ $index = 1;
                 <div class="col">
                     <form action="../../../core/model.php" method="get" class="d-inline">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Cari" aria-label="Recipient's username" aria-describedby="basic-addon2" name="tarif">
-                            <button type="submit" class="input-group-text" name="search_tarif">Cari</button>
+                            <input type="text" class="form-control" placeholder="Cari" aria-label="Recipient's username" aria-describedby="basic-addon2" name="pembayaran">
+                            <button type="submit" class="input-group-text" name="search_pembayaran">Cari</button>
                         </div>
                     </form>
                 </div>
@@ -95,25 +83,33 @@ $index = 1;
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Daya</th>
-                                <th>Tarif/kwh</th>
+                                <th>ID Tagihan</th>
+                                <th>Tanggal Pembayaran</th>
+                                <th>Bulan</th>
+                                <th>Biaya Admin</th>
+                                <th>Total Bayar</th>
+                                <th>ID Admin</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
 
                             <?php
-                            $result = $model->tarif();
+                            $result = $model->pembayaran();
                             if (!empty($result)) {
                                 foreach ($result as $r) : ?>
                                     <tr>
                                         <th><?= $index++ ?></th>
-                                        <td><?= $r->daya; ?></td>
-                                        <td><?= $r->tarifperkwh; ?></td>
+                                        <td><?= $r->id_tagihan; ?></td>
+                                        <td><?= $r->tanggal_pembayaran; ?></td>
+                                        <td><?= $r->bulan_bayar; ?></td>
+                                        <td><?= $r->biaya_admin; ?></td>
+                                        <td><?= $r->total_bayar; ?></td>
+                                        <td><?= $r->id_admin; ?></td>
                                         <td>
-                                            <a href="edit.php?id=<?= $r->id_penggunaan; ?>" class="btn btn-primary">Ubah</a>
-                                            <form action="../../../core/model.php?id=<?= $r->id_tarif; ?>" method="post" class="d-inline">
-                                                <button type="submit" name="delete_tarif" onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger">Hapus</button>
+                                            <a href="edit.php?id=<?= $r->id_pembayaran; ?>" class="btn btn-primary">Ubah</a>
+                                            <form action="../../../core/model.php?id=<?= $r->id_pembayaran; ?>" method="post" class="d-inline">
+                                                <button type="submit" name="delete_pembayaran" onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>

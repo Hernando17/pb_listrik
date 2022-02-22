@@ -2,7 +2,7 @@
 
 session_start();
 
-if ($_SESSION['id_level'] != "1") {
+if ($_SESSION['id_level'] != "3") {
     header("location:#");
 }
 

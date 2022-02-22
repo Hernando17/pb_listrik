@@ -2,11 +2,11 @@
 
 session_start();
 
-if ($_SESSION['id_level'] != "1") {
+if ($_SESSION['id_level'] != "3") {
     header("location:#");
 }
 
-require_once "../../../core/init.php";
+require "../../../core/init.php";
 
 $model = new Main();
 $index = 1;
@@ -20,7 +20,7 @@ $index = 1;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarif | Pembayaran Listrik</title>
+    <title>Data Tagihan | Pembayaran Listrik</title>
     <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 </head>
 
@@ -37,19 +37,7 @@ $index = 1;
                         <a class="nav-link" aria-current="page" href="../index.php">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../penggunaan/index.php">Penggunaan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../admin/index.php">Admin</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../pelanggan/index.php">Pelanggan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="../tarif/index.php">Tarif</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../tagihan/index.php">Tagihan</a>
+                        <a class="nav-link active" href="index.php">Tagihan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../pembayaran/index.php">Pembayaran</a>
@@ -75,68 +63,84 @@ $index = 1;
         <div class="container">
             <div class="row mb-3">
                 <div class="col">
-                    <a href=" create.php" class="btn btn-success">+</a>
+                    <a href="create.php" class="btn btn-success">+</a>
+                    <form action="../../../core/model.php" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-danger" name="deleteall_tagihan" onclick="return confirm('Apakah anda yakin?')">Bersihkan</button>
+                    </form>
                 </div>
                 <div class="col">
                     <form action="../../../core/model.php" method="get" class="d-inline">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Cari" aria-label="Recipient's username" aria-describedby="basic-addon2" name="tarif">
-                            <button type="submit" class="input-group-text" name="search_tarif">Cari</button>
+                            <input type="text" class="form-control" placeholder="Cari" aria-label="Recipient's username" aria-describedby="basic-addon2" name="tagihan">
+                            <button type="submit" class="input-group-text" name="search_tagihan">Cari</button>
                         </div>
                     </form>
                 </div>
             </div>
-            <div class=" card" style="
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+            <div class="card" style="
         border-radius:10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         ">
                 <div class="card-body">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Daya</th>
-                                <th>Tarif/kwh</th>
+                                <th>ID Penggunaan</th>
+                                <th>ID Pelanggan</th>
+                                <th>Bulan</th>
+                                <th>Tahun</th>
+                                <th>Jumlah Meter</th>
+                                <th>status</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-
                             <?php
-                            $result = $model->tarif();
+
+                            $result = $model->tagihan();
+
                             if (!empty($result)) {
                                 foreach ($result as $r) : ?>
                                     <tr>
-                                        <th><?= $index++ ?></th>
-                                        <td><?= $r->daya; ?></td>
-                                        <td><?= $r->tarifperkwh; ?></td>
-                                        <td>
-                                            <a href="edit.php?id=<?= $r->id_penggunaan; ?>" class="btn btn-primary">Ubah</a>
-                                            <form action="../../../core/model.php?id=<?= $r->id_tarif; ?>" method="post" class="d-inline">
-                                                <button type="submit" name="delete_tarif" onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger">Hapus</button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                        <td><?= $index++; ?></td>
+                                        <td><?= $r->id_penggunaan; ?></td>
+                                        <td><?= $r->id_pelanggan; ?></td>
+                                        <td><?= $r->bulan; ?></td>
+                                        <td><?= $r->tahun; ?></td>
+                                        <td><?= $r->jumlah_meter; ?></td>
+                                        <td><?= $r->status; ?></td>
+                                        <form action="../../../core/model.php?id_lunas=<?= $r->id_tagihan; ?>" method="post">
+                                            <?php
+                                            if ($r->status == "belum_lunas") {
+                                                echo '<td><button type="submit" class="btn btn-success" name="lunas">Lunas</button></td>';
+                                            }
+                                            ?>
+                                            <?php
+                                            if ($r->status != "belum_lunas") {
+                                                echo '<td></td>';
+                                            }
+                                            ?>
+                                        </form>
                                 <?php endforeach;
-                            } else { ?>
-                                <td>Data tidak ditemukan</td>
-                                <?php
-
-                                for ($i = 0; $i <= 2; $i++) {
+                            } else {
+                                echo "<td>Data tidak ditemukan</td>";
+                                for ($i = 0; $i <= 6; $i++) {
                                     echo "<td></td>";
                                 }
+                            }
 
                                 ?>
-
-                            <?php } ?>
+                                    </tr>
                         </tbody>
-
                     </table>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
 <footer>
     <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
 </footer>

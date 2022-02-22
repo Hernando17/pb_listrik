@@ -4,6 +4,10 @@ session_start();
 
 require_once "../../../core/init.php";
 
+if ($_SESSION['id_level'] != "1") {
+    header("location:#");
+}
+
 $model = new Main();
 $index = 1;
 

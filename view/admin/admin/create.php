@@ -36,7 +36,13 @@ if ($_SESSION['id_level'] != "1") {
                     <label for="username">Username</label>
                     <input type="text" class="form-control mb-2" name="username" />
                     <label for="password">Password</label>
-                    <input type="password" class="form-control mb-3" name="password" />
+                    <input type="password" class="form-control mb-2" name="password" />
+                    <label for="disabledSelect" class="form-label">Level</label>
+                    <select id="disabledSelect" class="form-select mb-3" style="width:20%;" name="id_level">
+                        <option>1</option>
+                        <option>3</option>
+                    </select>
+
                     <a href="index.php" class="btn btn-primary">Kembali</a>
                     <button type="submit" name="create_admin" class="btn btn-success">Konfirmasi</button>
                 </form>

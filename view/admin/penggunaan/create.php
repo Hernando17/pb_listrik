@@ -2,6 +2,10 @@
 
 session_start();
 
+if ($_SESSION['id_level'] != "1") {
+    header("location:#");
+}
+
 require_once "../../../core/init.php";
 
 $main = new Main();

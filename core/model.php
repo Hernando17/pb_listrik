@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require_once 'init.php';
 
 // Login
@@ -8,7 +9,14 @@ if (isset($_POST['login'])) {
     $password = $_POST['password'];
     $model = new Auth();
     $model->auth($username, $password);
-    header("location:../view/admin/index.php");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/index.php");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/index.php");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/index.php");
+    }
 }
 
 // Create new admin
@@ -16,11 +24,18 @@ if (isset($_POST['create_admin'])) {
     $nama_admin = $_POST['nama_admin'];
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $id_level = "1";
+    $id_level = $_POST['id_level'];
     $password = password_hash($password, PASSWORD_DEFAULT);
     $model = new Main();
     $model->create_admin($username, $password, $nama_admin, $id_level);
-    header("location:../view/admin/admin/index.php");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/admin/index.php");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/admin/index.php");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/admin/index.php");
+    }
 }
 
 // Edit admin
@@ -30,7 +45,14 @@ if (isset($_POST['update_admin'])) {
     $nama_admin = $_POST['nama_admin'];
     $model = new Main();
     $model->update_admin($id, $username, $nama_admin);
-    header("location:../view/admin/admin/index.php");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/admin/index.php");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/admin/index.php");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/admin/index.php");
+    }
 }
 
 // Delete admin
@@ -38,7 +60,14 @@ if (isset($_POST['delete_admin'])) {
     $id = $_GET['id'];
     $model = new Main();
     $model->delete_admin($id);
-    header("location:../view/admin/admin/index.php");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/admin/index.php");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/admin/index.php");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/admin/index.php");
+    }
 }
 
 // Create penggunaan
@@ -50,7 +79,14 @@ if (isset($_POST['create_penggunaan'])) {
     $meter_akhir = $_POST['meter_akhir'];
     $model = new Main();
     $model->create_penggunaan($id_pelanggan, $bulan, $tahun, $meter_awal, $meter_akhir);
-    header("location:../view/admin/penggunaan/index.php");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/penggunaan/index.php");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/penggunaan/index.php");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/penggunaan/index.php");
+    }
 }
 
 // Update penggunaan
@@ -63,7 +99,14 @@ if (isset($_POST['update_penggunaan'])) {
     $meter_akhir = $_POST['meter_akhir'];
     $model = new Main();
     $model->update_penggunaan($id, $id_pelanggan, $bulan, $tahun, $meter_awal, $meter_akhir);
-    header("location:../view/admin/penggunaan/index.php");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/penggunaan/index.php");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/penggunaan/index.php");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/penggunaan/index.php");
+    }
 }
 
 // Delete penggunaan
@@ -71,7 +114,14 @@ if (isset($_POST['delete_penggunaan'])) {
     $id = $_GET['id'];
     $model = new Main();
     $model->delete_penggunaan($id);
-    header("location:../view/admin/penggunaan/index.php");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/penggunaan/index.php");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/penggunaan/index.php");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/penggunaan/index.php");
+    }
 }
 
 // Create Pelanggan
@@ -86,7 +136,14 @@ if (isset($_POST['create_pelanggan'])) {
     $password = password_hash($password, PASSWORD_DEFAULT);
     $model = new Main();
     $model->create_pelanggan($username, $password, $nomor_kwh, $nama_pelanggan, $alamat, $id_tarif, $id_level);
-    header("location:../view/admin/pelanggan/index.php");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/pelanggan/index.php");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/pelanggan/index.php");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/pelanggan/index.php");
+    }
 }
 
 // Update pelanggan
@@ -100,7 +157,14 @@ if (isset($_POST['update_pelanggan'])) {
     $id_level = "2";
     $model = new Main();
     $model->update_pelanggan($id, $username, $nomor_kwh, $nama_pelanggan, $alamat, $id_tarif, $id_level);
-    header("location:../view/admin/pelanggan/index.php");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/pelanggan/index.php");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/pelanggan/index.php");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/pelanggan/index.php");
+    }
 }
 
 // Delete Pelanggan
@@ -108,7 +172,14 @@ if (isset($_POST['delete_pelanggan'])) {
     $id = $_GET['id'];
     $model = new Main();
     $model->delete_pelanggan($id);
-    header("location:../view/admin/pelanggan/index.php");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/pelanggan/index.php");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/pelanggan/index.php");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/pelanggan/index.php");
+    }
 }
 
 // Create Tagihan
@@ -121,7 +192,14 @@ if (isset($_POST['create_tagihan'])) {
     $status = "belum_lunas";
     $model = new Main();
     $model->create_tagihan($id_penggunaan, $id_pelanggan, $jumlah_meter, $bulan, $tahun, $status);
-    header("location:../view/admin/tagihan/index.php");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/tagihan/index.php");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/tagihan/index.php");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/tagihan/index.php");
+    }
 }
 
 // Create Tarif
@@ -130,7 +208,14 @@ if (isset($_POST['create_tarif'])) {
     $tarifperkwh = $_POST['tarifperkwh'];
     $model = new Main();
     $model->create_tarif($daya, $tarifperkwh);
-    header("location:../view/admin/tarif/index.php");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/tarif/index.php");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/tarif/index.php");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/tarif/index.php");
+    }
 }
 
 // Delete Tarif
@@ -138,7 +223,14 @@ if (isset($_POST['delete_tarif'])) {
     $id = $_GET['id'];
     $model = new Main();
     $model->delete_tarif($id);
-    header("location:../view/admin/tarif/index.php");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/tarif/index.php");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/tarif/index.php");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/tarif/index.php");
+    }
 }
 
 // Lunas Tagihan
@@ -147,7 +239,14 @@ if (isset($_POST['lunas'])) {
     $input = "lunas";
     $model = new Main();
     $model->status($status, $input);
-    header("location:../view/admin/tagihan/index.php");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/tagihan/index.php");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/tagihan/index.php");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/tagihan/index.php");
+    }
 }
 
 // Delete all tagihan
@@ -155,7 +254,14 @@ if (isset($_POST['deleteall_tagihan'])) {
     $status = "lunas";
     $model = new Main();
     $model->deletealltagihan($status);
-    header("location:../view/admin/tagihan/index.php");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/tagihan/index.php");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/tagihan/index.php");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/tagihan/index.php");
+    }
 }
 
 // Create Pembayaran
@@ -169,7 +275,14 @@ if (isset($_POST['create_pembayaran'])) {
     $id_admin = $_POST['id_admin'];
     $model = new Main();
     $model->create_pembayaran($id_tagihan, $id_pelanggan, $tanggal_pembayaran, $bulan_bayar, $biaya_admin, $total_bayar, $id_admin);
-    header("location:../view/admin/pembayaran/index.php");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/pembayaran/index.php");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/pembayaran/index.php");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/pembayaran/index.php");
+    }
 }
 
 // Edit Pembayaran
@@ -184,7 +297,14 @@ if (isset($_POST['edit_pembayaran'])) {
     $id_admin = $_POST['id_admin'];
     $model = new Main();
     $model->update_pembayaran($id, $id_tagihan, $id_pelanggan, $tanggal_pembayaran, $bulan_bayar, $biaya_admin, $total_bayar, $id_admin);
-    header("location:../view/admin/pembayaran/index.php");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/pembayaran/index.php");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/pembayaran/index.php");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/pembayaran/index.php");
+    }
 }
 
 // Delete Pembayaran
@@ -192,7 +312,14 @@ if (isset($_POST['delete_pembayaran'])) {
     $id = $_GET['id'];
     $model = new Main();
     $model->delete_pembayaran($id);
-    header("location:../view/admin/pembayaran/index.php");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/pembayaran/index.php");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/pembayaran/index.php");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/pembayaran/index.php");
+    }
 }
 
 // Search Penggunaan
@@ -200,7 +327,14 @@ if (isset($_GET['search_penggunaan'])) {
     $penggunaan = $_GET['penggunaan'];
     $model = new Main();
     $model->search_penggunaan($penggunaan);
-    header("location:../view/admin/penggunaan/search.php?search=$penggunaan");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/penggunaan/search.php?search=$penggunaan");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/penggunaan/search.php?search=$penggunaan");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/penggunaan/search.php?search=$penggunaan");
+    }
 }
 
 // Search Admin
@@ -208,7 +342,14 @@ if (isset($_GET['search_admin'])) {
     $admin = $_GET['admin'];
     $model = new Main();
     $model->search_admin($admin);
-    header("location:../view/admin/admin/search.php?search=$admin");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/admin/search.php?search=$admin");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/admin/search.php?search=$admin");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/admin/search.php?search=$admin");
+    }
 }
 
 // Search Pelanggan
@@ -216,7 +357,14 @@ if (isset($_GET['search_pelanggan'])) {
     $pelanggan = $_GET['pelanggan'];
     $model = new Main();
     $model->search_pelanggan($pelanggan);
-    header("location:../view/admin/pelanggan/search.php?search=$pelanggan");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/pelanggan/search.php?search=$pelanggan");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/pelanggan/search.php?search=$pelanggan");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/pelanggan/search.php?search=$pelanggan");
+    }
 }
 
 // Search Tarif
@@ -224,7 +372,14 @@ if (isset($_GET['search_tarif'])) {
     $tarif = $_GET['tarif'];
     $model = new Main();
     $model->search_tarif($tarif);
-    header("location:../view/admin/tarif/search.php?search=$tarif");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/tarif/search.php?search=$tarif");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/tarif/search.php?search=$tarif");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/tarif/search.php?search=$tarif");
+    }
 }
 
 // Search Tagihan
@@ -232,7 +387,14 @@ if (isset($_GET['search_tagihan'])) {
     $tagihan = $_GET['tagihan'];
     $model = new Main();
     $model->search_tagihan($tagihan);
-    header("location:../view/admin/tagihan/search.php?search=$tagihan");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/tagihan/search.php?search=$tagihan");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/tagihan/search.php?search=$tagihan");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/tagihan/search.php?search=$tagihan");
+    }
 }
 
 // Search Pembayaran
@@ -240,5 +402,12 @@ if (isset($_GET['search_pembayaran'])) {
     $pembayaran = $_GET['pembayaran'];
     $model = new Main();
     $model->search_pembayaran($pembayaran);
-    header("location:../view/admin/pembayaran/search.php?search=$pembayaran");
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/pembayaran/search.php?search=$pembayaran");
+    } elseif ($_SESSION['id_level'] == "2") {
+        header("location:../view/pelanggan/pembayaran/search.php?search=$pembayaran");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/pembayaran/search.php?search=$pembayaran");
+    }
 }

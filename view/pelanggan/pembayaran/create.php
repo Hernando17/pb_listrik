@@ -2,19 +2,16 @@
 
 session_start();
 
-if ($_SESSION['id_level'] != "1") {
+if ($_SESSION['id_level'] != "2") {
     header("location:#");
 }
 
 require_once "../../../core/init.php";
 
-$id = $_GET['id'];
-
 $main = new Main();
 $pelanggan = $main->pelanggan();
 $admin = $main->admin();
 $tagihan = $main->tagihan();
-$pembayaran = $main->edit_pembayaran($id);
 
 ?>
 
@@ -40,14 +37,13 @@ $pembayaran = $main->edit_pembayaran($id);
             border-radius:10px;
             ">
             <div class="card-body m-4">
-                <form action="../../../core/model.php?id=<?= $id; ?>" method="post">
+                <form action="../../../core/model.php" method="post">
 
                     <div class="row">
                         <div class="col">
                             <div class="mb-2 col-10">
                                 <label for="disabledSelect">ID Tagihan</label>
                                 <select id="disabledSelect" class="form-select mb-2" name="id_tagihan">
-                                    <option><?= $pembayaran->id_tagihan; ?></option>
                                     <?php
                                     foreach ($tagihan as $t) : ?>
                                         <option><?= $t->id_tagihan; ?></option>
@@ -57,7 +53,6 @@ $pembayaran = $main->edit_pembayaran($id);
 
                                 <label for="id_admin">ID Admin</label>
                                 <select id="disabledSelect" class="form-select mb-2" name="id_admin">
-                                    <option><?= $pembayaran->id_admin; ?></option>
                                     <?php
                                     foreach ($admin as $a) : ?>
                                         <option><?= $a->id_admin; ?></option>
@@ -66,7 +61,6 @@ $pembayaran = $main->edit_pembayaran($id);
                                 </select>
                                 <label for="id_pelanggan">ID Pelanggan</label>
                                 <select id="disabledSelect" class="form-select mb-2" name="id_pelanggan">
-                                    <option><?= $pembayaran->id_pelanggan; ?></option>
                                     <?php
                                     foreach ($pelanggan as $p) : ?>
                                         <option><?= $p->id_pelanggan; ?></option>
@@ -74,7 +68,7 @@ $pembayaran = $main->edit_pembayaran($id);
                                     ?>
                                 </select>
                                 <label for="meter_awal">Tanggal Pembayaran</label>
-                                <input type="date" class="form-control mb-2 " name="tanggal_pembayaran" value="<?= $pembayaran->tanggal_pembayaran; ?>" />
+                                <input type="date" class="form-control mb-2 " name="tanggal_pembayaran" />
                             </div>
                         </div>
 
@@ -82,7 +76,6 @@ $pembayaran = $main->edit_pembayaran($id);
                             <div class="col-10">
                                 <label for="disabledSelect">Bulan Bayar</label>
                                 <select id="disabledSelect" class="form-select mb-2" name="bulan_bayar">
-                                    <option><?= $pembayaran->bulan_bayar; ?></option>
                                     <option>Januari</option>
                                     <option>Februari</option>
                                     <option>Maret</option>
@@ -98,12 +91,12 @@ $pembayaran = $main->edit_pembayaran($id);
                                 </select>
                             </div>
                             <label for="meter_awal">Biaya Admin</label>
-                            <input type="text" class="form-control mb-2 " name="biaya_admin" value="<?= $pembayaran->biaya_admin; ?>" />
+                            <input type="text" class="form-control mb-2 " name="biaya_admin" />
                             <label for="meter_akhir">Total Bayar</label>
-                            <input type="text" class="form-control mb-3 " name="total_bayar" value="<?= $pembayaran->total_bayar; ?>" />
+                            <input type="text" class="form-control mb-3 " name="total_bayar" />
 
                             <a href="index.php" class="btn btn-primary">Kembali</a>
-                            <button type="submit" name="edit_pembayaran" class="btn btn-success">Konfirmasi</button>
+                            <button type="submit" name="create_pembayaran" class="btn btn-success">Konfirmasi</button>
                         </div>
                     </div>
             </div>
