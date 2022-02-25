@@ -411,3 +411,16 @@ if (isset($_GET['search_pembayaran'])) {
         header("location:../view/bank/pembayaran/search.php?search=$pembayaran");
     }
 }
+
+if (isset($_GET['print'])) {
+    $sejak = $_GET['sejak'];
+    $sampai = $_GET['sampai'];
+    $model = new Main();
+    $model->print($sejak, $sampai);
+
+    if ($_SESSION['id_level'] == "1") {
+        header("location:../view/admin/pembayaran/print.php?sejak=$sejak&sampai=$sampai");
+    } elseif ($_SESSION['id_level'] == "3") {
+        header("location:../view/bank/pembayaran/print.php?sejak=$sejak&sampai=$sampai");
+    }
+}

@@ -155,6 +155,12 @@ class Main extends Connection
         $bind = $this->conn->query($sql);
     }
 
+    public function deletealltagihan($status)
+    {
+        $sql = "DELETE FROM tagihan WHERE status='$status'";
+        $bind = $this->conn->query($sql);
+    }
+
     public function status($status, $input)
     {
         $sql = "UPDATE tagihan SET status='$input' WHERE id_tagihan='$status'";
@@ -227,12 +233,6 @@ class Main extends Connection
     public function delete_pembayaran($id)
     {
         $sql = "DELETE FROM pembayaran WHERE id_pembayaran='$id'";
-        $bind = $this->conn->query($sql);
-    }
-
-    public function deletealltagihan($status)
-    {
-        $sql = "DELETE FROM tagihan WHERE status='$status'";
         $bind = $this->conn->query($sql);
     }
 
@@ -309,6 +309,20 @@ class Main extends Connection
     public function search_pembayaran($pembayaran)
     {
         $sql = "SELECT * FROM pembayaran WHERE id_pembayaran LIKE '%$pembayaran%' OR id_tagihan LIKE '%$pembayaran%' OR id_pelanggan LIKE '%$pembayaran%' OR tanggal_pembayaran LIKE '%$pembayaran%' OR bulan_bayar LIKE '%$pembayaran%' OR biaya_admin LIKE '%$pembayaran%' OR total_bayar LIKE '%$pembayaran%' OR id_admin LIKE '%$pembayaran%'";
+        $bind = $this->conn->query($sql);
+
+        while ($obj = $bind->fetch_object()) {
+            $baris[] = $obj;
+        }
+
+        if (!empty($baris)) {
+            return $baris;
+        }
+    }
+
+    public function print($sejak, $sampai)
+    {
+        $sql = "SELECT * FROM pembayaran WHERE tanggal_pembayaran >'$sejak' AND tanggal_pembayaran < '$sampai'";
         $bind = $this->conn->query($sql);
 
         while ($obj = $bind->fetch_object()) {

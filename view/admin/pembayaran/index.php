@@ -75,7 +75,35 @@ $index = 1;
         <div class="container">
             <div class="row mb-3">
                 <div class="col">
-                    <a href=" create.php" class="btn btn-success">+</a>
+                    <a href="create.php" class="btn btn-success">+</a>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Print
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Tanggal Pembayaran</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="../../../core/model.php" method="get">
+                                        <label for="bulan">Sejak Tanggal</label>
+                                        <input type="date" class="form-control mb-1" name="sejak">
+                                        <label for="bulan">Sampai Tanggal</label>
+                                        <input type="date" class="form-control" name="sampai">
+                                </div>
+                                <div class=" modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-dark" name="print">Print</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col">
                     <form action="../../../core/model.php" method="get" class="d-inline">
