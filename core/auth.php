@@ -26,6 +26,8 @@ class Auth extends Connection
                         $_SESSION['username'] = $username;
                         $_SESSION['id_level'] = "3";
                     }
+                } else {
+                    header("location:../view/login.php?pesan=passwordsalah");
                 }
             }
         } elseif ($cekpelanggan > 0) {
@@ -35,10 +37,12 @@ class Auth extends Connection
                         $_SESSION['username'] = $username;
                         $_SESSION['id_level'] = "2";
                     }
+                } else {
+                    header("location:../view/login.php?pesan=passwordsalah");
                 }
             }
         } else {
-            header("location:../view/login.php");
+            header("location:../view/login.php?pesan=usernamesalah");
         }
     }
 }

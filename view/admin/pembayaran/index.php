@@ -144,7 +144,7 @@ $index = 1;
                                         <td><?= $r->tanggal_pembayaran; ?></td>
                                         <td><?= $r->bulan_bayar; ?></td>
                                         <td><?= $r->biaya_admin; ?></td>
-                                        <td><?= $r->total_bayar; ?></td>
+                                        <td>Rp <?= number_format($r->total_bayar, 2); ?></td>
                                         <td><?= $r->id_admin; ?></td>
                                         <td>
                                             <a href="edit.php?id=<?= $r->id_pembayaran; ?>" class="btn btn-primary">Ubah</a>

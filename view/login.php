@@ -1,3 +1,9 @@
+<?php
+
+require "../core/init.php";
+$auth = new Auth();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,8 +17,18 @@
 
 <body>
     <div class="container col-4">
+        <?php
+        if (isset($_GET['pesan'])) {
+            if ($_GET['pesan'] == "usernamesalah") {
+                echo '<div class="alert alert-danger mt-5" style="margin-bottom:-10%;">Username Salah</div>';
+            } else {
+                echo '<div class="alert alert-danger mt-5" style="margin-bottom:-10%;">Password Salah</div>';
+            }
+        }
+
+        ?>
         <div class="card" style="
-    margin-top:30%;
+    margin-top:20%;
     border-radius:10px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     
